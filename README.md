@@ -1,5 +1,13 @@
-[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/iDQJgb-p)
+# پروژه‌ی برنامه‌سازی پیشرفته
+لطفا نام و نام‌خانوادگی و شماره‌ی دانشجووی اعضای گروه خود را این‌جا وارد کنید:
 
-SeyedHasanNovin-403106895
-TahaRoozbahani-403110528
-AmirMohammadNasiriPour-403106816
+شماره‌ی تیم: `۶۴`
+
+نام عضو اول: `امیرمحمد نصیری`
+شماره دانشجویی عضو اول: `403106816`
+
+نام عضو دوم: `سید حسن نوین`
+شماره دانشجویی عضو دوم: `403106895`
+
+نام عضو سوم: `طاها روزبهانی`
+شماره دانشجویی عضو سوم: `403110528`
