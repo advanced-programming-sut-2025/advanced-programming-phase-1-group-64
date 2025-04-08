@@ -1,4 +1,4 @@
 package StrdewValley.Controllers;
 
-public class SignupController {
+public class SignupMenuController {
 }
