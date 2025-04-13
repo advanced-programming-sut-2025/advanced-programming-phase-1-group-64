@@ -2,12 +2,16 @@ package StrdewValley.Models.Enums;
 
 public enum GameTime {
     HOURS_PER_DAY(9),
-    DAYS_PER_SEASON(28),
+    DAYS_PER_SEASON(28);
     
 
-    private final int valueByHour;
+    private final int value;
 
-    GameTime(int valueByHour) {
-        this.valueByHour = valueByHour;
+    GameTime(int value) {
+        this.value = value;
+    }
+
+    public int getValue(){
+        return value;
     }
 }

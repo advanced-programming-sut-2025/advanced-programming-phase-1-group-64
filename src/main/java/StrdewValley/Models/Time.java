@@ -1,17 +1,31 @@
 package StrdewValley.Models;
 
+import StrdewValley.Models.Enums.GameTime;
+import StrdewValley.Models.Enums.SeasonType;
+
 public class Time {
-    private int hour;
+    private int pastHours;
 
     public Time() {
-        this.hour = 9;
+        this.pastHours = 9;
+    }
+    public Time(int hour) {
+        this.pastHours = hour;
     }
 
     public void addHour(int hour){
-        this.hour += hour;
+        this.pastHours += hour;
     }
 
     public void addDay(int day){
-        this.hour += day * 1;
+        this.pastHours += (GameTime.HOURS_PER_DAY.getValue() * day);
+    }
+
+    public int getDay(){
+
+    }
+
+    public SeasonType getSeasonType(){
+
     }
 }

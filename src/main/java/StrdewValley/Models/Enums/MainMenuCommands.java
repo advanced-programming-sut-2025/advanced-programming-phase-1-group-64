@@ -1,4 +1,4 @@
 package StrdewValley.Models.Enums;
 
-public class CellKinds {
+public enum MainMenuCommands {
 }
