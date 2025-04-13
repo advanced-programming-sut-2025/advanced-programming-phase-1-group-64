@@ -3,10 +3,12 @@ package StrdewValley.Models;
 import StrdewValley.Models.Enums.AbilityType;
 import StrdewValley.Models.Enums.Gender;
 import StrdewValley.Models.Enums.SecurityQuestions;
+import StrdewValley.Models.Relation.Relation;
+
 import java.util.ArrayList;
 import java.util.List;
 
-public class User {
+public class User extends Character {
     private String username;
     private String password;
     private String nickname;
@@ -15,23 +17,24 @@ public class User {
     private final SecurityQuestions securityQuestion;
     private final String answerSecurityQuestion;
     private boolean isStayLoggedIn;
-    private final ArrayList<Game> myGames;
+    private final ArrayList<Game> myGames; //should remove
     private Game currentGame;
     private int highestEarnedMoney;
     private int energyInDay;
     private boolean isFainted;
-    private Inventory inventory;
-    private Cell cell;
     private final ArrayList<Ability> abilities;
+    private ArrayList<Relation> friendSheeps;
+    private ArrayList<Relation> messages;
+    private ArrayList<Relation> trades;
 
     public User(Gender gender, SecurityQuestions securityQuestion,
                 String answerSecurityQuestion, String username,
                 String password, String nickname, String email) {
         this.gender = gender;
+        this.username = username;
         this.securityQuestion = securityQuestion;
         this.answerSecurityQuestion = answerSecurityQuestion;
         this.myGames = new ArrayList<>();
-        this.username = username;
         this.password = password;
         this.nickname = nickname;
         this.email = email;
