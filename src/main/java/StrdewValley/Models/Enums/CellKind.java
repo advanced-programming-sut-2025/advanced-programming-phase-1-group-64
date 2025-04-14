@@ -10,5 +10,8 @@ public enum CellKind {
     TREE,  //درخت
     BRANCH, //شاخه
     GRASS, //علف
+    SHOP_1, //مغازه
+    SHOP_2, //مغازه
+    SHOP_3, //مغازه
     STONE; //سنگ
 }

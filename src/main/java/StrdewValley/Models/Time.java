@@ -13,6 +13,8 @@ public class Time {
         this.pastHours = hour;
     }
 
+    //TODO: write functions
+
     public void addHour(int hour){
         this.pastHours += hour;
     }

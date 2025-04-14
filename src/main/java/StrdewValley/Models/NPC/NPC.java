@@ -1,6 +1,7 @@
 package StrdewValley.Models.NPC;
 
 import StrdewValley.Models.Character;
+import StrdewValley.Models.Enums.CellKind;
 import StrdewValley.Models.Items.Item;
 
 import java.util.ArrayList;
@@ -10,6 +11,7 @@ public class NPC extends Character {
     private ArrayList<String> dialogs;
     private ArrayList<Item> lovelyItems;
     private ArrayList<Quest> quests;
+    private CellKind shop;
 
     public NPC(String NPCName, ArrayList<String> dialogs, ArrayList<Item> lovelyItems, ArrayList<Quest> quests) {
         this.NPCName = NPCName;

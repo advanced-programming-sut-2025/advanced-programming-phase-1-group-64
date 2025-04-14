@@ -7,4 +7,8 @@ public class Season {
     private SeasonType seasonType;
     private Weather todayWeather;
     private Weather tomorrowWeather;
+
+    public void Thundar(Cell cell) {
+        //TODO
+    }
 }
