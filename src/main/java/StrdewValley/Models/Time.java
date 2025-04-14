@@ -9,8 +9,8 @@ public class Time {
     public Time() {
         this.pastHours = 9;
     }
-    public Time(int hour) {
-        this.pastHours = hour;
+    public Time(int day) {
+        this.pastHours = day;
     }
 
     public void addHour(int hour){
