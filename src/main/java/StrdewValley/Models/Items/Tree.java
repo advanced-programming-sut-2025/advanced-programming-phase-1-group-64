@@ -3,8 +3,7 @@ package StrdewValley.Models.Items;
 import StrdewValley.Models.Enums.SeasonType;
 import StrdewValley.Models.Time;
 
-public class Tree {
-    private String treeName;
+public class Tree extends Item{
     private String treeSource;
     private int[] stages;
     private String fruit;
@@ -16,7 +15,7 @@ public class Tree {
 
     public Tree(String treeName, String treeSource, String fruit, Time fruitHarvestCycle,
                 int fruitBaseSellPrice, Boolean isFruitEdible, int fruitEnergy, SeasonType[] season) {
-        this.treeName = treeName;
+        super(treeName);
         this.treeSource = treeSource;
         this.stages = new int[]{7,7,7,7};
         this.fruit = fruit;
