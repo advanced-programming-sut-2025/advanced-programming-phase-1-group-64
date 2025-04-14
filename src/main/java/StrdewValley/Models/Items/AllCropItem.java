@@ -8,7 +8,6 @@ public class AllCropItem extends Item{
     private int[] stages;
     private Boolean oneTime;
     private Time regrowthTime;
-    private int baseSellPrice;
     private Boolean isEdible;
     private int energy;
     private SeasonType[] season;
@@ -16,12 +15,11 @@ public class AllCropItem extends Item{
 
     public AllCropItem(String cropName, String cropSource, int[] stages, Boolean oneTime,
                        Time regrowthTime, int baseSellPrice, Boolean isEdible, int energy, SeasonType[] season, Boolean canBecomeGiant) {
-        super(cropName);
+        super(cropName, baseSellPrice);
         this.cropSource = cropSource;
         this.stages = stages;
         this.oneTime = oneTime;
         this.regrowthTime = regrowthTime;
-        this.baseSellPrice = baseSellPrice;
         this.isEdible = isEdible;
         this.energy = energy;
         this.season = season;
@@ -35,5 +33,10 @@ public class AllCropItem extends Item{
         }
         //TODO
         return new Time();
+    }
+
+    @Override
+    public Item copy() {
+        return null;
     }
 }

@@ -7,6 +7,11 @@ public class ForagingSeed extends Seed {
     private SeasonType[] season;
 
     public ForagingSeed(String name, SeasonType[] seasonTypes) {
-        super(name, seasonTypes);
+        super(name,0,seasonTypes);
+    }
+
+    @Override
+    public Item copy() {
+        return null;
     }
 }
