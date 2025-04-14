@@ -1,4 +1,4 @@
 package StrdewValley.Views;
 
-public class GameMenu {
+public class GameMenu implements AppMenu{
 }
