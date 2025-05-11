@@ -7,9 +7,9 @@ public class AppScanner {
 
     public void run(){
         String input = "";
-        do {
-            input = scanner.nextLine().trim();
-            AppContext.getCurrentMenu().
-        }
+//        do {
+//            input = scanner.nextLine().trim();
+//            //AppContext.getCurrentMenu().
+//        }
     }
 }
