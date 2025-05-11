@@ -13,12 +13,14 @@ public class Main {
         Player p2 = new Player("reza", "ali", "000", "t@t.t", Gender.MALE, SecurityQuestion.Q1, "Yes", true);
         Map map = Map.createMap(p1, 2, p2, 2);
 
-        for (int y = 0; y < 30; y++) {
-            for (int x = 0; x < 50; x++) {
-                System.out.printf("%12s ", map.getCells()[y][x].getKind());
-            }
-            System.out.printf("\n");
-        }
+//        for (int y = 0; y < 30; y++) {
+//            for (int x = 0; x < 50; x++) {
+//                System.out.printf("%12s ", map.getCells()[y][x].getKind());
+//            }
+//            System.out.printf("\n");
+//        }
 
+        System.out.print(map.helpReadingMap());
+//        System.out.print(map.printMap(0, 0, 30));
     }
 }

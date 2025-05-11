@@ -167,19 +167,73 @@ public class Map {
                 if (cells[y][x].getKind() == CellKind.FARM) {
                     double chance = random.nextDouble();
 
-                    if (chance < 0.4) { // 40% احتمال درخت
-                        cells[y][x].setKind(CellKind.TREE);
+                    if (chance < 0.3) {
+                        //double typeChance = random.nextDouble();
+
+                        if (chance < 0.33) { // 33% از 30% = 10% کل
+                            cells[y][x].setKind(CellKind.TREE);
+                        }
+//                        else if (typeChance < 0.66) { // 33% از 30% = 10% کل
+//                            cells[y][x].setKind(CellKind.ROCK);
+//                        }
+//                        else { // 34% از 30% ≈ 10% کل
+//                            cells[y][x].setKind(CellKind.FORAGING);
+//                        }
                     }
-                    else if (chance < 0.7) { // 30% احتمال صخره (مجموعاً 70%)
-                        cells[y][x].setKind(CellKind.ROCK);
-                    }
-                    else if (chance < 0.9) { // 20% احتمال منابع جمع‌آوری (مجموعاً 90%)
-                        cells[y][x].setKind(CellKind.FORAGING);
-                    }
-                    // 10% باقیمانده خالی می‌ماند (EMPTY)
                 }
             }
         }
+    }
+
+    public String printMap(int x, int y, int size) {
+        StringBuilder mapOutput = new StringBuilder();
+
+        // محاسبه محدوده قابل نمایش با در نظر گرفتن مرزهای نقشه
+        int startX = Math.max(0, x);
+        int startY = Math.max(0, y);
+        int endX = Math.min(width, x + size);
+        int endY = Math.min(height, y + size);
+
+        // ایجاد خط بالای کادر
+        mapOutput.append("+");
+        for (int i = startX; i < endX; i++) {
+            mapOutput.append("---");
+        }
+        mapOutput.append("-+\n");
+
+        // چاپ هر سطر از نقشه
+        for (int row = startY; row < endY; row++) {
+            mapOutput.append("| ");
+            for (int col = startX; col < endX; col++) {
+                // دریافت کاراکتر مربوط به نوع سلول
+                char cellChar = cells[row][col].getKind().getCellChar();
+                mapOutput.append(cellChar).append("  ");
+            }
+            mapOutput.append("|\n");
+        }
+
+        // ایجاد خط پایین کادر
+        mapOutput.append("+");
+        for (int i = startX; i < endX; i++) {
+            mapOutput.append("---");
+        }
+        mapOutput.append("-+");
+
+        return mapOutput.toString();
+    }
+
+    public String helpReadingMap() {
+        StringBuilder helpText = new StringBuilder();
+        helpText.append("Map Legend:\n");
+        helpText.append("-----------\n");
+
+        for (CellKind cellKind : CellKind.values()) {
+            helpText.append(String.format("%c: %s%n",
+                    cellKind.getCellChar(),
+                    cellKind.getCellName()));
+        }
+
+        return helpText.toString();
     }
 
     private Boolean isCellCompleted(Cell cell)
