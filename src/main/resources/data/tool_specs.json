@@ -1,0 +1,27 @@
+{
+  "Hoe": {
+    "energy": {"BASIC": 5, "COPPER": 4, "IRON": 3, "GOLDEN": 2, "IRIDIUM": 1}
+  },
+  "Pickaxe": {
+    "energy": {"BASIC": 5, "COPPER": 4, "IRON": 3, "GOLDEN": 2, "IRIDIUM": 1}
+  },
+  "Axe": {
+    "energy": {"BASIC": 5, "COPPER": 4, "IRON": 3, "GOLDEN": 2, "IRIDIUM": 1}
+  },
+  "Watering can": {
+    "energy": {"BASIC": 5, "COPPER": 4, "IRON": 3, "GOLDEN": 2, "IRIDIUM": 1},
+    "capacity": {"BASIC": 40, "COPPER": 55, "IRON": 70, "GOLDEN": 85, "IRIDIUM": 100}
+  },
+  "Fishing pole": {
+    "energyFishing": {"TRAINING": 8, "BAMBOO": 8, "FIBERGLASS": 6, "IRIDIUM": 4}
+  },
+  "Scythe": {
+    "energy": {"BASIC": 2}
+  },
+  "Milk pail": {
+    "energy": {"BASIC": 4}
+  },
+  "Shear": {
+    "energy": {"BASIC": 4}
+  }
+}
