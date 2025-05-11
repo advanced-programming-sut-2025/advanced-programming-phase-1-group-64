@@ -4,6 +4,7 @@ import org.example.model.characters.Player;
 
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class Map {
     private final int width = 50;
@@ -160,25 +161,17 @@ public class Map {
     }
 
     private static void fillCenterArea(Cell[][] cells, int startX, int startY, int width, int height) {
-        Random random = new Random();
-
         for (int y = startY; y < startY + height && y < cells.length; y++) {
             for (int x = startX; x < startX + width && x < cells[0].length; x++) {
                 if (cells[y][x].getKind() == CellKind.FARM) {
-                    double chance = random.nextDouble();
+                    double random = Math.random();
 
-                    if (chance < 0.3) {
-                        //double typeChance = random.nextDouble();
-
-                        if (chance < 0.33) { // 33% از 30% = 10% کل
-                            cells[y][x].setKind(CellKind.TREE);
-                        }
-//                        else if (typeChance < 0.66) { // 33% از 30% = 10% کل
-//                            cells[y][x].setKind(CellKind.ROCK);
-//                        }
-//                        else { // 34% از 30% ≈ 10% کل
-//                            cells[y][x].setKind(CellKind.FORAGING);
-//                        }
+                    if (random < 0.003) {
+                        cells[y][x].setKind(CellKind.TREE);
+                    } else if (random < 0.006) {
+                        cells[y][x].setKind(CellKind.ROCK);
+                    } else if(random < 0.01) {
+                        cells[y][x].setKind(CellKind.FORAGING);
                     }
                 }
             }

@@ -20,7 +20,11 @@ public class Main {
 //            System.out.printf("\n");
 //        }
 
-        System.out.print(map.helpReadingMap());
+//        System.out.print(map.helpReadingMap());
 //        System.out.print(map.printMap(0, 0, 30));
+//
+//        for (int i = 0; i < 50; i++) {
+//            System.out.println(Math.random());
+//        }
     }
 }
