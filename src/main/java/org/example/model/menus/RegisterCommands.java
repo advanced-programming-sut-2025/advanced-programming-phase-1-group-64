@@ -5,7 +5,7 @@ import java.util.regex.Pattern;
 
 public enum RegisterCommands implements Command{
     REGISTER("register -u (?<username>\\S+) -p (?<password>\\S+) (?<password_confirm>\\S+) -n (?<nickname>\\S+) -e (?<email>\\S+) -g (?<gender>\\S+)"),
-    QUESTION(" pick question -q (?<question_number>\\d) -a (?<answer>\\S+) -c (?<answer_confirm>\\S+)")
+    QUESTION("pick question -q (?<question_number>\\d) -a (?<answer>\\S+) -c (?<answer_confirm>\\S+)")
     ;
 
     private final String pattern;

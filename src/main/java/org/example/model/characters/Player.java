@@ -4,6 +4,9 @@ import org.example.model.characters.ability.Ability;
 import org.example.model.characters.inventory.Inventory;
 import org.example.model.world.Cell;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+
 public class Player extends Character{
     private String username;
     private String password;
@@ -15,9 +18,61 @@ public class Player extends Character{
 
     private boolean stayLoggedIn;
 
+    public String getUsername() {
+        return username;
+    }
+    public String getPassword() {
+        return password;
+    }
+    public String getEmail() {
+        return email;
+    }
+    public Gender getGender() {
+        return gender;
+    }
+    public SecurityQuestion getQuestion() {
+        return question;
+    }
+    public String getAnswer() {
+        return answer;
+    }
+    public boolean isStayLoggedIn() {
+        return stayLoggedIn;
+    }
+
+    private static String bytesToHex(byte[] bytes) {
+        StringBuilder sb = new StringBuilder();
+        for (byte b : bytes) {
+            sb.append(String.format("%02x", b));
+        }
+        return sb.toString();
+    }
+
+    public static boolean isValidUsername(String username) {
+        String regex = "^[a-zA-Z0-9-]+$";
+        return username.matches(regex);
+    }
+    public static boolean isValidEmail(String email) {
+        String regex = "^(?!.*\\.\\.)(?:[A-Za-z0-9](?:[A-Za-z0-9._-]*[A-Za-z0-9])?)@[a-zA-Z0-9]+\\.[a-zA-Z]{2,}$";
+        return email.matches(regex);
+    }
+    public static boolean isValidPassword(String password) {
+        String regex = "^[a-zA-Z0-9?<>,\"';:\\\\/|\\]\\[}{+=)(*&^%$#!]+$";
+        return password.matches(regex);
+    }
+    public static String sha256(String password) {
+        try {
+            MessageDigest md = MessageDigest.getInstance("SHA-256");
+            byte[] hash = md.digest(password.getBytes());
+            return bytesToHex(hash);
+        } catch (NoSuchAlgorithmException e) {
+            throw new RuntimeException("SHA-256 algorithm not available" + e);
+        }
+    }
+
     public Player(String name, String username, String password,
                   String email, Gender gender, SecurityQuestion question,
-                  String answer, boolean stayLoggedIn) {
+                  String answer) {
         super(name);
         this.username = username;
         this.password = password;
@@ -25,7 +80,6 @@ public class Player extends Character{
         this.gender = gender;
         this.question = question;
         this.answer = answer;
-        this.stayLoggedIn = stayLoggedIn;
     }
 
     private int highEarnedPoints;
