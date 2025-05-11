@@ -1,8 +1,197 @@
 package org.example.model.world;
 
+import org.example.model.characters.Player;
+
+import java.util.ArrayList;
+import java.util.Random;
+
 public class Map {
-    private int width;
-    private int height;
+    private final int width = 50;
+    private final int height = 30;
 
     private Cell[][] cells;
+
+    public Cell[][] getCells() {
+        return cells;
+    }
+
+    public static Map createMap(Player player1, int type1, Player player2, int type2)
+    {
+        Map map = new Map();
+        map.cells = new Cell[map.height][map.width];
+
+        for (int y = 0; y < map.height; y++) {
+            for (int x = 0; x < map.width; x++) {
+                map.cells[y][x] = new Cell(x, new ArrayList<>(), CellKind.EMPTY, y);
+            }
+        }
+
+        for (int y = 0; y < map.height; y++) {
+            for (int x = 0; x < map.width; x++) {
+                ArrayList<Player> accessPlayers = new ArrayList<>();
+                CellKind kind = map.cells[y][x].getKind();
+
+                if (x < 20 && y < 10) {
+                    accessPlayers.add(player1);
+                    kind = CellKind.FARM;
+                }
+                else if (x >= map.width - 20 && y < 10) {
+                    accessPlayers.add(player2);
+                    kind = CellKind.FARM;
+                }
+                else if (x >= 20 && x < 30 && y < 10) {
+                    accessPlayers.add(player1);
+                    accessPlayers.add(player2);
+                    kind = CellKind.WALK;
+                }
+                else if (x >= 20 && x < 30 && y >= 10 && y < 20) {
+                    accessPlayers.add(player1);
+                    accessPlayers.add(player2);
+                    kind = CellKind.VILLAGE;
+                }
+
+                map.cells[y][x] = new Cell(x, accessPlayers, kind, y);
+            }
+
+            createFarmMap(0, 0, type1, map.cells);
+            createFarmMap(map.width - 20,  0, type2, map.cells);
+        }
+
+        return map;
+    }
+
+    private static void createFarmMap(int startX, int startY, int type, Cell[][] cells) {
+        if (type == 1) {
+            // خانه 4x4 در بالا سمت چپ
+            for (int y = startY; y < startY + 4; y++) {
+                for (int x = startX; x < startX + 4; x++) {
+                    if (y < cells.length && x < cells[0].length) {
+                        cells[y][x].setKind(CellKind.HOME);
+                    }
+                }
+            }
+
+            // گلخانه 6x5 در سمت راست خانه
+            int greenhouseStartX = startX + 15;
+            int greenhouseStartY = startY;
+            for (int y = greenhouseStartY; y < greenhouseStartY + 6; y++) {
+                for (int x = greenhouseStartX; x < greenhouseStartX + 5; x++) {
+                    if (y < cells.length && x < cells[0].length) {
+                        cells[y][x].setKind(CellKind.GREENHOUSE);
+                    }
+                }
+            }
+
+            // معدن 4x5 در پایین سمت چپ
+            int mineStartX = startX;
+            int mineStartY = startY + 4;
+            for (int y = mineStartY; y < mineStartY + 6; y++) {
+                for (int x = mineStartX; x < mineStartX + 4; x++) {
+                    if (y < cells.length && x < cells[0].length) {
+                        cells[y][x].setKind(CellKind.MINE);
+                    }
+                }
+            }
+
+            // دریاچه 3x5 در پایین سمت راست
+            int lakeStartX = startX + 15;
+            int lakeStartY = startY + 6;
+            for (int y = lakeStartY; y < lakeStartY + 4; y++) {
+                for (int x = lakeStartX; x < lakeStartX + 5; x++) {
+                    if (y < cells.length && x < cells[0].length) {
+                        cells[y][x].setKind(CellKind.WATER);
+                    }
+                }
+            }
+        }
+        else if (type == 2) {
+            int lake1StartX = startX;
+            int lake1StartY = startY;
+            for (int y = lake1StartY; y < lake1StartY + 3; y++) {
+                for (int x = lake1StartX; x < lake1StartX + 4; x++) {
+                    if (y < cells.length && x < cells[0].length) {
+                        cells[y][x].setKind(CellKind.WATER);
+                    }
+                }
+            }
+
+            int mineStartX = startX + 15;
+            int mineStartY = startY;
+            for (int y = mineStartY; y < mineStartY + 4; y++) {
+                for (int x = mineStartX; x < mineStartX + 5; x++) {
+                    if (y < cells.length && x < cells[0].length) {
+                        cells[y][x].setKind(CellKind.MINE);
+                    }
+                }
+            }
+
+            int homeStartX = startX;
+            int homeStartY = startY + 3;
+            for (int y = homeStartY; y < homeStartY + 4; y++) {
+                for (int x = homeStartX; x < homeStartX + 4; x++) {
+                    if (y < cells.length && x < cells[0].length) {
+                        cells[y][x].setKind(CellKind.HOME);
+                    }
+                }
+            }
+
+            int greenhouseStartX = startX + 15;
+            int greenhouseStartY = startY + 4;
+            for (int y = greenhouseStartY; y < greenhouseStartY + 6; y++) {
+                for (int x = greenhouseStartX; x < greenhouseStartX + 5; x++) {
+                    if (y < cells.length && x < cells[0].length) {
+                        cells[y][x].setKind(CellKind.GREENHOUSE);
+                    }
+                }
+            }
+
+            int lake2StartX = startX;
+            int lake2StartY = startY + 7;
+            for (int y = lake2StartY; y < lake2StartY + 3; y++) {
+                for (int x = lake2StartX; x < lake2StartX + 4; x++) {
+                    if (y < cells.length && x < cells[0].length) {
+                        cells[y][x].setKind(CellKind.WATER);
+                    }
+                }
+            }
+        }
+
+        fillCenterArea(cells, 4, 0, 11, 10);
+    }
+
+    private static void fillCenterArea(Cell[][] cells, int startX, int startY, int width, int height) {
+        Random random = new Random();
+
+        for (int y = startY; y < startY + height && y < cells.length; y++) {
+            for (int x = startX; x < startX + width && x < cells[0].length; x++) {
+                if (cells[y][x].getKind() == CellKind.FARM) {
+                    double chance = random.nextDouble();
+
+                    if (chance < 0.4) { // 40% احتمال درخت
+                        cells[y][x].setKind(CellKind.TREE);
+                    }
+                    else if (chance < 0.7) { // 30% احتمال صخره (مجموعاً 70%)
+                        cells[y][x].setKind(CellKind.ROCK);
+                    }
+                    else if (chance < 0.9) { // 20% احتمال منابع جمع‌آوری (مجموعاً 90%)
+                        cells[y][x].setKind(CellKind.FORAGING);
+                    }
+                    // 10% باقیمانده خالی می‌ماند (EMPTY)
+                }
+            }
+        }
+    }
+
+    private Boolean isCellCompleted(Cell cell)
+    {
+         for(Cell[] c : cells){
+             for (Cell cc : c) {
+                 if (cc.equals(cell)) {
+                     return true;
+                 }
+             }
+         }
+         return false;
+    }
+
 }

@@ -8,4 +8,8 @@ public enum CellKind {
     GREENHOUSE,
     HOME,
     MINE,
+    WALK,
+    VILLAGE,
+    FARM,
+    FORAGING
 }
