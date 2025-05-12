@@ -15,10 +15,19 @@ public enum CellKind {
 
     private char cellChar;
     private String cellName;
+    private Object object;
 
     CellKind(char cellChar, String cellName) {
         this.cellChar = cellChar;
         this.cellName = cellName;
+    }
+
+    public Object getObject() {
+        return object;
+    }
+
+    public void setObject(Object object) {
+        this.object = object;
     }
 
     public char getCellChar() {
@@ -27,5 +36,9 @@ public enum CellKind {
 
     public String getCellName() {
         return cellName;
+    }
+
+    public boolean canHoldObject() {
+        return this == TREE || this == FORAGING || this == ROCK;
     }
 }

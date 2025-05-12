@@ -1,6 +1,8 @@
 package org.example.model.world;
 
+import org.example.config.TreeConfig;
 import org.example.model.characters.Player;
+import org.example.model.items.trees.TreeSpec;
 
 import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
@@ -162,13 +164,38 @@ public class Map {
     }
 
     private static void fillCenterArea(Cell[][] cells, int startX, int startY, int width, int height) {
+        List<TreeSpec> allTreeTypes = (List<TreeSpec>) TreeConfig.all();
+        if (allTreeTypes.isEmpty()) return;
+
+        List<TreeSpec> placedTrees = new ArrayList<>();
+
+        for (TreeSpec tree : allTreeTypes) {
+            boolean placed = false;
+            while (!placed) {
+                for (int y = startY; y < startY + height && y < cells.length; y++) {
+                    for (int x = startX; x < startX + width && x < cells[0].length; x++) {
+                        if (cells[y][x].getKind() == CellKind.FARM && Math.random() < 0.01) {
+                            cells[y][x].setKind(CellKind.TREE);
+                            cells[y][x].setObject(tree); // ذخیره مشخصات درخت در سلول
+                            placedTrees.add(tree);
+                            placed = true;
+                            break;
+                        }
+                    }
+                    if (placed) break;
+                }
+            }
+        }
+
         for (int y = startY; y < startY + height && y < cells.length; y++) {
             for (int x = startX; x < startX + width && x < cells[0].length; x++) {
                 if (cells[y][x].getKind() == CellKind.FARM) {
                     double random = Math.random();
 
                     if (random < 0.003) {
+                        TreeSpec randomTree = allTreeTypes.get((int)(Math.random() * allTreeTypes.size()));
                         cells[y][x].setKind(CellKind.TREE);
+                        cells[y][x].setObject(randomTree);
                     } else if (random < 0.006) {
                         cells[y][x].setKind(CellKind.ROCK);
                     } else if(random < 0.01) {
