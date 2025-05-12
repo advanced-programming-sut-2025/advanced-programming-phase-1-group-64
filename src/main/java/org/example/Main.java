@@ -9,8 +9,8 @@ import org.example.model.world.Map;
 public class Main {
     public static void main(String[] args) {
 
-        Player p1 = new Player("taha", "ali", "000", "t@t.t", Gender.MALE, SecurityQuestion.Q1, "Yes", true);
-        Player p2 = new Player("reza", "ali", "000", "t@t.t", Gender.MALE, SecurityQuestion.Q1, "Yes", true);
+        Player p1 = new Player("taha", "ali", "000", "t@t.t", Gender.MALE, SecurityQuestion.Q1, "Yes");
+        Player p2 = new Player("reza", "ali", "000", "t@t.t", Gender.MALE, SecurityQuestion.Q1, "Yes");
         Map map = Map.createMap(p1, 2, p2, 2);
 
 //        for (int y = 0; y < 30; y++) {
@@ -21,7 +21,7 @@ public class Main {
 //        }
 
 //        System.out.print(map.helpReadingMap());
-//        System.out.print(map.printMap(0, 0, 30));
+        System.out.print(map.printMap(0, 0, 30));
 //
 //        for (int i = 0; i < 50; i++) {
 //            System.out.println(Math.random());

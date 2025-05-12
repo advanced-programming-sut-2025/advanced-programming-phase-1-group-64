@@ -54,14 +54,16 @@ public class Map {
                 map.cells[y][x] = new Cell(x, accessPlayers, kind, y);
             }
 
-            createFarmMap(0, 0, type1, map.cells);
-            createFarmMap(map.width - 20,  0, type2, map.cells);
+            createFarmMap(0, 0, type1, map.cells, player1);
+            createFarmMap(map.width - 20,  0, type2, map.cells, player2);
         }
 
         return map;
     }
 
-    private static void createFarmMap(int startX, int startY, int type, Cell[][] cells) {
+    private static void createFarmMap(int startX, int startY, int type, Cell[][] cells, Player p) {
+        cells[startY][startX].setObject(p);
+
         if (type == 1) {
             // خانه 4x4 در بالا سمت چپ
             for (int y = startY; y < startY + 4; y++) {
@@ -181,31 +183,34 @@ public class Map {
     public String printMap(int x, int y, int size) {
         StringBuilder mapOutput = new StringBuilder();
 
-        // محاسبه محدوده قابل نمایش با در نظر گرفتن مرزهای نقشه
         int startX = Math.max(0, x);
         int startY = Math.max(0, y);
         int endX = Math.min(width, x + size);
         int endY = Math.min(height, y + size);
 
-        // ایجاد خط بالای کادر
         mapOutput.append("+");
         for (int i = startX; i < endX; i++) {
             mapOutput.append("---");
         }
         mapOutput.append("-+\n");
 
-        // چاپ هر سطر از نقشه
         for (int row = startY; row < endY; row++) {
             mapOutput.append("| ");
             for (int col = startX; col < endX; col++) {
-                // دریافت کاراکتر مربوط به نوع سلول
-                char cellChar = cells[row][col].getKind().getCellChar();
+                Cell cell = cells[row][col];
+                char cellChar;
+
+                if (cell.getObject() != null) {
+                    cellChar = cell.getObject().toString().charAt(0);
+                } else {
+                    cellChar = cell.getKind().getCellChar();
+                }
+
                 mapOutput.append(cellChar).append("  ");
             }
             mapOutput.append("|\n");
         }
 
-        // ایجاد خط پایین کادر
         mapOutput.append("+");
         for (int i = startX; i < endX; i++) {
             mapOutput.append("---");

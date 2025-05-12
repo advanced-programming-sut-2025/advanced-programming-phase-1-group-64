@@ -9,12 +9,22 @@ public class Cell {
     private int y;
     private CellKind kind;
     private ArrayList<Player> haveAccessToThisCellPlayers;
+    private Object object;
 
     public Cell(int x, ArrayList<Player> haveAccessToThisCellPlayers, CellKind kind, int y) {
         this.x = x;
         this.haveAccessToThisCellPlayers = haveAccessToThisCellPlayers;
         this.kind = kind;
         this.y = y;
+        this.object = null;
+    }
+
+    public Object getObject() {
+        return object;
+    }
+
+    public void setObject(Object object) {
+        this.object = object;
     }
 
     public int getX() {

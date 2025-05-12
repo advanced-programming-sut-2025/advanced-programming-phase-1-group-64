@@ -99,4 +99,9 @@ public class Player extends Character{
 
     private Ability farming,mining,foraging, fishing;
     private Inventory inventory;
+
+    @Override
+    public String toString() {
+        return "@";
+    }
 }
