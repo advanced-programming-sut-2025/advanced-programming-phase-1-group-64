@@ -2,8 +2,7 @@ package org.example.model.world;
 
 import org.example.model.characters.Player;
 
-import java.util.ArrayList;
-import java.util.Random;
+import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class Map {
@@ -232,6 +231,188 @@ public class Map {
         }
 
         return helpText.toString();
+    }
+
+    public void walk(int targetX, int targetY, Player p) {
+        // پیدا کردن سلول فعلی بازیکن
+        Cell currentCell = findPlayerCell(p);
+        if (currentCell == null) {
+            System.out.println("Error: Player not found on map!");
+            return;
+        }
+
+        // بررسی آیا مقصد در محدوده مجاز است
+        if (!isValidCoordinate(targetX, targetY)) {
+            System.out.println("Error: Target coordinates are out of bounds!");
+            return;
+        }
+
+        Cell targetCell = cells[targetY][targetX];
+
+        // بررسی دسترسی به مزرعه دیگر بازیکنان
+        if (!targetCell.getHaveAccessToThisCellPlayers().contains(p)) {
+            System.out.println("Error: You don't have access to this player's farm!");
+            return;
+        }
+
+        // پیدا کردن مسیر با کمترین انرژی
+        PathResult pathResult = findShortestPath(currentCell, targetCell, p);
+        if (pathResult == null) {
+            System.out.println("Error: No valid path to target!");
+            return;
+        }
+
+        // محاسبه انرژی مورد نیاز
+        int energyNeeded = calculateEnergyCost(pathResult.path.size(), pathResult.turns);
+
+        System.out.println("Energy needed: " + energyNeeded);
+        System.out.println("Confirm movement? (yes/no)");
+
+        boolean confirmed = true; // در واقعیت باید از کاربر بپرسید
+
+        if (confirmed) {
+            if (p.getCurrentEnergy() >= energyNeeded) {
+                movePlayer(p, currentCell, targetCell, pathResult.path);
+                p.setCurrentEnergy(p.getCurrentEnergy() - energyNeeded);
+                System.out.println("Moved successfully! Remaining energy: " + p.getCurrentEnergy());
+            } else {
+                p.setFainted(true);
+                System.out.println("Not enough energy! Player fainted!");
+            }
+        }
+    }
+
+    private Cell findPlayerCell(Player p) {
+        for (int y = 0; y < height; y++) {
+            for (int x = 0; x < width; x++) {
+                if (cells[y][x].getObject() == p) {
+                    return cells[y][x];
+                }
+            }
+        }
+        return null;
+    }
+
+    private boolean isValidCoordinate(int x, int y) {
+        return x >= 0 && x < width && y >= 0 && y < height;
+    }
+
+    private int calculateEnergyCost(int distance, int turns) {
+        return (distance + 10 * turns) / 20;
+    }
+
+    private PathResult findShortestPath(Cell start, Cell end, Player p) {
+        PriorityQueue<PathNode> openSet = new PriorityQueue<>();
+        java.util.Map<Cell, PathNode> allNodes = new HashMap<>();
+
+        PathNode startNode = new PathNode(start, null, 0, estimateDistance(start, end));
+        openSet.add(startNode);
+        allNodes.put(start, startNode);
+
+        while (!openSet.isEmpty()) {
+            PathNode current = openSet.poll();
+
+            if (current.cell.equals(end)) {
+                // مسیر پیدا شد
+                List<Cell> path = new ArrayList<>();
+                int turns = 0;
+                PathNode node = current;
+
+                while (node != null) {
+                    path.add(0, node.cell);
+                    node = node.parent;
+                    turns++;
+                }
+
+                return new PathResult(path, turns);
+            }
+
+            for (Cell neighbor : getWalkableNeighbors(current.cell, p)) {
+                int newCost = current.gCost + 1; // هزینه هر حرکت 1 است
+
+                PathNode neighborNode = allNodes.getOrDefault(neighbor, new PathNode(neighbor));
+                allNodes.putIfAbsent(neighbor, neighborNode);
+
+                if (newCost < neighborNode.gCost) {
+                    neighborNode.parent = current;
+                    neighborNode.gCost = newCost;
+                    neighborNode.hCost = estimateDistance(neighbor, end);
+                    neighborNode.calculateFCost();
+
+                    if (!openSet.contains(neighborNode)) {
+                        openSet.add(neighborNode);
+                    }
+                }
+            }
+        }
+
+        return null;
+    }
+
+    private static class PathNode implements Comparable<PathNode> {
+        public Cell cell;
+        public PathNode parent;
+        public int gCost;
+        public int hCost;
+        public int fCost;
+
+        public PathNode(Cell cell) {
+            this(cell, null, Integer.MAX_VALUE, Integer.MAX_VALUE);
+        }
+
+        public PathNode(Cell cell, PathNode parent, int gCost, int hCost) {
+            this.cell = cell;
+            this.parent = parent;
+            this.gCost = gCost;
+            this.hCost = hCost;
+            this.fCost = gCost + hCost;
+        }
+
+        public void calculateFCost() {
+            fCost = gCost + hCost;
+        }
+
+        @Override
+        public int compareTo(PathNode other) {
+            return Integer.compare(this.fCost, other.fCost);
+        }
+    }
+
+    private int estimateDistance(Cell a, Cell b) {
+        return Math.abs(a.getX() - b.getX()) + Math.abs(a.getY() - b.getY());
+    }
+
+    private List<Cell> getWalkableNeighbors(Cell cell, Player p) {
+        List<Cell> neighbors = new ArrayList<>();
+        int x = cell.getX();
+        int y = cell.getY();
+
+        for (int dy = -1; dy <= 1; dy++) {
+            for (int dx = -1; dx <= 1; dx++) {
+                if (dx == 0 && dy == 0) continue;
+
+                int nx = x + dx;
+                int ny = y + dy;
+
+                if (isValidCoordinate(nx, ny)) {
+                    Cell neighbor = cells[ny][nx];
+
+                    if (neighbor.getKind() != CellKind.ROCK &&
+                            neighbor.getKind() != CellKind.WATER &&
+                            neighbor.getHaveAccessToThisCellPlayers().contains(p)) {
+
+                        neighbors.add(neighbor);
+                    }
+                }
+            }
+        }
+
+        return neighbors;
+    }
+
+    private void movePlayer(Player p, Cell fromCell, Cell toCell, List<Cell> path) {
+        fromCell.setObject(null);
+        toCell.setObject(p);
     }
 
     private Boolean isCellCompleted(Cell cell)

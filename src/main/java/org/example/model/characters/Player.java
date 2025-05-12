@@ -100,6 +100,30 @@ public class Player extends Character{
     private Ability farming,mining,foraging, fishing;
     private Inventory inventory;
 
+    public int getMaxEnergy() {
+        return maxEnergy;
+    }
+
+    public void setMaxEnergy(int maxEnergy) {
+        this.maxEnergy = maxEnergy;
+    }
+
+    public int getCurrentEnergy() {
+        return currentEnergy;
+    }
+
+    public void setCurrentEnergy(int currentEnergy) {
+        this.currentEnergy = currentEnergy;
+    }
+
+    public boolean isFainted() {
+        return fainted;
+    }
+
+    public void setFainted(boolean fainted) {
+        this.fainted = fainted;
+    }
+
     @Override
     public String toString() {
         return "@";
