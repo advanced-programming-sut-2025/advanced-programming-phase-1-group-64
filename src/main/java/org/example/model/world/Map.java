@@ -62,6 +62,135 @@ public class Map {
         return map;
     }
 
+    public static Map createMap(Player player1, int type1, Player player2, int type2, Player player3, int type3)
+    {
+        Map map = new Map();
+        map.cells = new Cell[map.height][map.width];
+
+        for (int y = 0; y < map.height; y++) {
+            for (int x = 0; x < map.width; x++) {
+                map.cells[y][x] = new Cell(x, new ArrayList<>(), CellKind.EMPTY, y);
+            }
+        }
+
+        for (int y = 0; y < map.height; y++) {
+            for (int x = 0; x < map.width; x++) {
+                ArrayList<Player> accessPlayers = new ArrayList<>();
+                CellKind kind = map.cells[y][x].getKind();
+
+                if (x < 20 && y < 10) {
+                    accessPlayers.add(player1);
+                    kind = CellKind.FARM;
+                }
+                else if (x >= map.width - 20 && y < 10) {
+                    accessPlayers.add(player2);
+                    kind = CellKind.FARM;
+                }
+                else if (x < 20 && y >= 20) {
+                    accessPlayers.add(player3);
+                    kind = CellKind.FARM;
+                }
+                else if (x >= 20 && x < 30 && y < 10) {
+                    accessPlayers.add(player1);
+                    accessPlayers.add(player2);
+                    kind = CellKind.WALK;
+                }
+                else if (x < 10 && y < 20 && y >= 10) {
+                    accessPlayers.add(player1);
+                    accessPlayers.add(player3);
+                    kind = CellKind.WALK;
+                }
+                else if (x >= 20 && x < 30 && y >= 10 && y < 20) {
+                    accessPlayers.add(player1);
+                    accessPlayers.add(player2);
+                    accessPlayers.add(player3);
+                    kind = CellKind.VILLAGE;
+                }
+
+                map.cells[y][x] = new Cell(x, accessPlayers, kind, y);
+            }
+
+            createFarmMap(0, 0, type1, map.cells, player1);
+            createFarmMap(map.width - 20,  0, type2, map.cells, player2);
+            createFarmMap(0,  20, type3, map.cells, player3);
+        }
+
+        return map;
+    }
+
+    public static Map createMap(Player player1, int type1, Player player2, int type2, Player player3, int type3,
+                                Player player4, int type4)
+    {
+        Map map = new Map();
+        map.cells = new Cell[map.height][map.width];
+
+        for (int y = 0; y < map.height; y++) {
+            for (int x = 0; x < map.width; x++) {
+                map.cells[y][x] = new Cell(x, new ArrayList<>(), CellKind.EMPTY, y);
+            }
+        }
+
+        for (int y = 0; y < map.height; y++) {
+            for (int x = 0; x < map.width; x++) {
+                ArrayList<Player> accessPlayers = new ArrayList<>();
+                CellKind kind = map.cells[y][x].getKind();
+
+                if (x < 20 && y < 10) {
+                    accessPlayers.add(player1);
+                    kind = CellKind.FARM;
+                }
+                else if (x >= map.width - 20 && y < 10) {
+                    accessPlayers.add(player2);
+                    kind = CellKind.FARM;
+                }
+                else if (x < 20 && y >= map.height - 10) {
+                    accessPlayers.add(player3);
+                    kind = CellKind.FARM;
+                }
+                else if (x >= map.width - 20 && y >= map.height - 10) {
+                    accessPlayers.add(player4);
+                    kind = CellKind.FARM;
+                }
+                else if (x >= 20 && x < 30 && y < 10) {
+                    accessPlayers.add(player1);
+                    accessPlayers.add(player2);
+                    kind = CellKind.WALK;
+                }
+                else if (x < 10 && y < 20 && y >= 10) {
+                    accessPlayers.add(player1);
+                    accessPlayers.add(player3);
+                    kind = CellKind.WALK;
+                }
+                else if (x >= 20 && y < 20 && y >= 10) {
+                    accessPlayers.add(player2);
+                    accessPlayers.add(player4);
+                    kind = CellKind.WALK;
+                }
+                else if (x >= 20 && x < 30 && y >= map.height - 10) {
+                    accessPlayers.add(player3);
+                    accessPlayers.add(player4);
+                    kind = CellKind.WALK;
+                }
+                else if (x >= 20 && x < 30 && y >= 10 && y < 20) {
+                    accessPlayers.add(player1);
+                    accessPlayers.add(player2);
+                    accessPlayers.add(player3);
+                    accessPlayers.add(player4);
+                    kind = CellKind.VILLAGE;
+                }
+
+                map.cells[y][x] = new Cell(x, accessPlayers, kind, y);
+            }
+
+            createFarmMap(0, 0, type1, map.cells, player1);
+            createFarmMap(map.width - 20,  0, type2, map.cells, player2);
+            createFarmMap(0,  20, type3, map.cells, player3);
+            createFarmMap(map.width - 20,  20, type4, map.cells, player4);
+        }
+
+        return map;
+    }
+
     private static void createFarmMap(int startX, int startY, int type, Cell[][] cells, Player p) {
         cells[startY][startX].setObject(p);
 
@@ -176,7 +305,7 @@ public class Map {
                     for (int x = startX; x < startX + width && x < cells[0].length; x++) {
                         if (cells[y][x].getKind() == CellKind.FARM && Math.random() < 0.01) {
                             cells[y][x].setKind(CellKind.TREE);
-                            cells[y][x].setObject(tree); // ذخیره مشخصات درخت در سلول
+                            cells[y][x].getKind().setObject(tree); // ذخیره مشخصات درخت در سلول
                             placedTrees.add(tree);
                             placed = true;
                             break;
@@ -195,7 +324,7 @@ public class Map {
                     if (random < 0.003) {
                         TreeSpec randomTree = allTreeTypes.get((int)(Math.random() * allTreeTypes.size()));
                         cells[y][x].setKind(CellKind.TREE);
-                        cells[y][x].setObject(randomTree);
+                        cells[y][x].getKind().setObject(randomTree);
                     } else if (random < 0.006) {
                         cells[y][x].setKind(CellKind.ROCK);
                     } else if(random < 0.01) {
