@@ -6,7 +6,10 @@ import java.util.regex.Pattern;
 public enum LoginCommands implements Command {
     LOGIN("login -u (?<username>\\S+) -p (?<password>\\S+)( –stay-logged-in)?"),
     FORGET_PASSWORD("forget password -u (?<username>\\S+)"),
-    ANSWER("answer -a (?<answer>\\S+)")
+    ANSWER("answer -a (?<answer>\\S.*)"),
+    MENU_ENTER("menu enter (<?menu>\\S+)"),
+    EXIT("menu exit"),
+    SHOW_MENU("show current menu")
     ;
 
     private final String pattern;
