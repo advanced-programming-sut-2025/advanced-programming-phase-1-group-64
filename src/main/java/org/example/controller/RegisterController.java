@@ -5,6 +5,8 @@ import org.example.model.Result;
 import org.example.model.characters.Gender;
 import org.example.model.characters.Player;
 import org.example.model.characters.SecurityQuestion;
+import org.example.model.context.App;
+import org.example.model.menus.Menu;
 import org.example.model.menus.RegisterCommands;
 import org.example.view.AppScanner;
 
@@ -79,15 +81,7 @@ public class RegisterController {
             }
         }
         if (!Player.isValidPassword(password))
-            return new Result(false, "Invalid password");
-        if (password.length()<8)
-            return new Result(false, "Password must be at least 8 characters");
-        if (!password.matches("[a-z]"))
-            return new Result(false, "Password must contain at least one lowercase letter");
-        if (!password.matches("[A-Z]"))
-            return new Result(false, "Password must contain at least one uppercase letter");
-        if (!password.matches("[!#$%^&*)(=+}{\\]\\[|/\\\\:;'\",><?]"))
-            return new Result(false, "Password must contain at least one special character");
+            return new Result(false, "\nInvalid password");
         while (!password.equals(passwordConfirm)){
             System.out.println("Enter your password again or exit :");
             String choice = scanner.nextLine();
@@ -113,10 +107,12 @@ public class RegisterController {
             answerConfirm = scanner.nextLine();
             if (answerConfirm.equalsIgnoreCase("exit")) return new Result(false, "Back to register menu");
         }
+
         SecurityQuestion question = SecurityQuestion.getQuestion(questionNumber);
         password = Player.sha256(password);
         Player player = new Player(nickname, username, password, email, gen, question, answer);
         UserRepository.get().add(player);
+        App.setCurrentMenu(Menu.LOGIN_MENU);
         return new Result(true, "Register successful");
     }
 }

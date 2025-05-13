@@ -1,5 +1,6 @@
 package org.example.model.characters;
 
+import org.example.model.Result;
 import org.example.model.characters.ability.Ability;
 import org.example.model.characters.inventory.Inventory;
 import org.example.model.world.Cell;
@@ -39,6 +40,11 @@ public class Player extends Character{
     public boolean isStayLoggedIn() {
         return stayLoggedIn;
     }
+    public void setUsername(String username) {this.username = username;}
+    public void setPassword(String password) {this.password = password;}
+    public void setEmail(String email) {this.email = email;}
+    public int getHighEarnedPoints() {return highEarnedPoints;}
+    public int getGamesPlayed() {return gamesPlayed;}
 
     private static String bytesToHex(byte[] bytes) {
         StringBuilder sb = new StringBuilder();
@@ -57,6 +63,16 @@ public class Player extends Character{
         return email.matches(regex);
     }
     public static boolean isValidPassword(String password) {
+        if (!Player.isValidPassword(password))
+            System.out.printf("Invalid password");
+        if (password.length()<8)
+            System.out.printf("Password must be at least 8 characters");
+        if (!password.matches("[a-z]"))
+            System.out.printf("Password must contain at least one lowercase letter");
+        if (!password.matches("[A-Z]"))
+            System.out.printf("Password must contain at least one uppercase letter");
+        if (!password.matches("[!#$%^&*)(=+}{\\]\\[|/\\\\:;'\",><?]"))
+            System.out.printf("Password must contain at least one special character");
         String regex = "^[a-zA-Z0-9?<>,\"';:\\\\/|\\]\\[}{+=)(*&^%$#!]+$";
         return password.matches(regex);
     }
@@ -122,6 +138,10 @@ public class Player extends Character{
 
     public void setFainted(boolean fainted) {
         this.fainted = fainted;
+    }
+
+    public void setStayLoggedIn(boolean stayLoggedIn) {
+        this.stayLoggedIn = stayLoggedIn;
     }
 
     @Override
