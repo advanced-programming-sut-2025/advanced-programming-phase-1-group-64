@@ -17,16 +17,22 @@ public class Map {
         return cells;
     }
 
-    public static Map createMap(Player player1, int type1, Player player2, int type2)
-    {
+    private static Map createEmpty() {
         Map map = new Map();
         map.cells = new Cell[map.height][map.width];
 
-        for (int y = 0; y < map.height; y++) {
-            for (int x = 0; x < map.width; x++) {
+        for ( int y = 0; y < map.height; y++ ) {
+            for ( int x = 0; x < map.width; x++ ) {
                 map.cells[y][x] = new Cell(x, new ArrayList<>(), CellKind.EMPTY, y);
             }
         }
+
+        return map;
+    }
+
+    public static Map createMap(Player player1, int type1, Player player2, int type2)
+    {
+        Map map = createEmpty();
 
         for (int y = 0; y < map.height; y++) {
             for (int x = 0; x < map.width; x++) {
@@ -64,14 +70,7 @@ public class Map {
 
     public static Map createMap(Player player1, int type1, Player player2, int type2, Player player3, int type3)
     {
-        Map map = new Map();
-        map.cells = new Cell[map.height][map.width];
-
-        for (int y = 0; y < map.height; y++) {
-            for (int x = 0; x < map.width; x++) {
-                map.cells[y][x] = new Cell(x, new ArrayList<>(), CellKind.EMPTY, y);
-            }
-        }
+        Map map = createEmpty();
 
         for (int y = 0; y < map.height; y++) {
             for (int x = 0; x < map.width; x++) {
@@ -121,14 +120,7 @@ public class Map {
     public static Map createMap(Player player1, int type1, Player player2, int type2, Player player3, int type3,
                                 Player player4, int type4)
     {
-        Map map = new Map();
-        map.cells = new Cell[map.height][map.width];
-
-        for (int y = 0; y < map.height; y++) {
-            for (int x = 0; x < map.width; x++) {
-                map.cells[y][x] = new Cell(x, new ArrayList<>(), CellKind.EMPTY, y);
-            }
-        }
+        Map map = createEmpty();
 
         for (int y = 0; y < map.height; y++) {
             for (int x = 0; x < map.width; x++) {
