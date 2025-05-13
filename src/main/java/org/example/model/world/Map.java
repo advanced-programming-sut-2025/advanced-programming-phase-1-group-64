@@ -188,97 +188,45 @@ public class Map {
 
         if (type == 1) {
             // خانه 4x4 در بالا سمت چپ
-            for (int y = startY; y < startY + 4; y++) {
-                for (int x = startX; x < startX + 4; x++) {
-                    if (y < cells.length && x < cells[0].length) {
-                        cells[y][x].setKind(CellKind.HOME);
-                    }
-                }
-            }
+            cells = Cell.createCellType(4,4,CellKind.HOME, startY, startX, cells);
 
             // گلخانه 6x5 در سمت راست خانه
             int greenhouseStartX = startX + 15;
             int greenhouseStartY = startY;
-            for (int y = greenhouseStartY; y < greenhouseStartY + 6; y++) {
-                for (int x = greenhouseStartX; x < greenhouseStartX + 5; x++) {
-                    if (y < cells.length && x < cells[0].length) {
-                        cells[y][x].setKind(CellKind.GREENHOUSE);
-                    }
-                }
-            }
+            cells = Cell.createCellType(6,5,CellKind.GREENHOUSE,greenhouseStartY,greenhouseStartX,cells);
 
             // معدن 4x5 در پایین سمت چپ
             int mineStartX = startX;
             int mineStartY = startY + 4;
-            for (int y = mineStartY; y < mineStartY + 6; y++) {
-                for (int x = mineStartX; x < mineStartX + 4; x++) {
-                    if (y < cells.length && x < cells[0].length) {
-                        cells[y][x].setKind(CellKind.MINE);
-                    }
-                }
-            }
+            cells = Cell.createCellType(5,4,CellKind.MINE,mineStartY,mineStartX,cells);
 
             // دریاچه 3x5 در پایین سمت راست
             int lakeStartX = startX + 15;
             int lakeStartY = startY + 6;
-            for (int y = lakeStartY; y < lakeStartY + 4; y++) {
-                for (int x = lakeStartX; x < lakeStartX + 5; x++) {
-                    if (y < cells.length && x < cells[0].length) {
-                        cells[y][x].setKind(CellKind.WATER);
-                    }
-                }
-            }
+            cells = Cell.createCellType(3,5,CellKind.WATER,lakeStartY,lakeStartX,cells);
         }
         else if (type == 2) {
+            // دریاچه 4*3
             int lake1StartX = startX;
             int lake1StartY = startY;
-            for (int y = lake1StartY; y < lake1StartY + 3; y++) {
-                for (int x = lake1StartX; x < lake1StartX + 4; x++) {
-                    if (y < cells.length && x < cells[0].length) {
-                        cells[y][x].setKind(CellKind.WATER);
-                    }
-                }
-            }
+            cells = Cell.createCellType(3,4,CellKind.WATER,lake1StartY,lake1StartX,cells);
+
+            // دریاچه 4*3
+            int lake2StartX = startX;
+            int lake2StartY = startY + 7;
+            cells = Cell.createCellType(3,4,CellKind.WATER,lake2StartY,lake2StartX,cells);
 
             int mineStartX = startX + 15;
             int mineStartY = startY;
-            for (int y = mineStartY; y < mineStartY + 4; y++) {
-                for (int x = mineStartX; x < mineStartX + 5; x++) {
-                    if (y < cells.length && x < cells[0].length) {
-                        cells[y][x].setKind(CellKind.MINE);
-                    }
-                }
-            }
+            cells = Cell.createCellType(4,5,CellKind.MINE,mineStartY,mineStartX,cells);
 
             int homeStartX = startX;
             int homeStartY = startY + 3;
-            for (int y = homeStartY; y < homeStartY + 4; y++) {
-                for (int x = homeStartX; x < homeStartX + 4; x++) {
-                    if (y < cells.length && x < cells[0].length) {
-                        cells[y][x].setKind(CellKind.HOME);
-                    }
-                }
-            }
+            cells = Cell.createCellType(4,4,CellKind.HOME,homeStartY,homeStartX,cells);
 
             int greenhouseStartX = startX + 15;
             int greenhouseStartY = startY + 4;
-            for (int y = greenhouseStartY; y < greenhouseStartY + 6; y++) {
-                for (int x = greenhouseStartX; x < greenhouseStartX + 5; x++) {
-                    if (y < cells.length && x < cells[0].length) {
-                        cells[y][x].setKind(CellKind.GREENHOUSE);
-                    }
-                }
-            }
-
-            int lake2StartX = startX;
-            int lake2StartY = startY + 7;
-            for (int y = lake2StartY; y < lake2StartY + 3; y++) {
-                for (int x = lake2StartX; x < lake2StartX + 4; x++) {
-                    if (y < cells.length && x < cells[0].length) {
-                        cells[y][x].setKind(CellKind.WATER);
-                    }
-                }
-            }
+            cells = Cell.createCellType(6,5,CellKind.GREENHOUSE,greenhouseStartY,greenhouseStartX,cells);
         }
 
         fillCenterArea(cells, 4, 0, 11, 10);

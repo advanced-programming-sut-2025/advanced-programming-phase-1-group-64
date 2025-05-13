@@ -66,4 +66,16 @@ public class Cell {
         }
         return false;
     }
+
+    public static Cell[][] createCellType(int height, int width, CellKind kind, int startY, int startX, Cell[][] cells) {
+        for ( int y = startY; y < startY + height; y++) {
+            for ( int x = startX; x < startX + width; x++) {
+                if (y < cells.length && x < cells[0].length) {
+                    cells[y][x].setKind(kind);
+                }
+            }
+        }
+
+        return cells;
+    }
 }
