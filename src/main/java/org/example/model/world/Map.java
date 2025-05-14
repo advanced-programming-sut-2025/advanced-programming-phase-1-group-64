@@ -60,10 +60,10 @@ public class Map {
 
                 map.cells[y][x] = new Cell(x, accessPlayers, kind, y);
             }
-
-            createFarmMap(0, 0, type1, map.cells, player1);
-            createFarmMap(map.width - 20,  0, type2, map.cells, player2);
         }
+
+        createFarmMap(0, 0, type1, map.cells, player1);
+        createFarmMap(map.width - 20,  0, type2, map.cells, player2);
 
         return map;
     }
@@ -108,11 +108,11 @@ public class Map {
 
                 map.cells[y][x] = new Cell(x, accessPlayers, kind, y);
             }
-
-            createFarmMap(0, 0, type1, map.cells, player1);
-            createFarmMap(map.width - 20,  0, type2, map.cells, player2);
-            createFarmMap(0,  20, type3, map.cells, player3);
         }
+
+        createFarmMap(0, 0, type1, map.cells, player1);
+        createFarmMap(map.width - 20,  0, type2, map.cells, player2);
+        createFarmMap(0,  20, type3, map.cells, player3);
 
         return map;
     }
@@ -173,12 +173,12 @@ public class Map {
 
                 map.cells[y][x] = new Cell(x, accessPlayers, kind, y);
             }
-
-            createFarmMap(0, 0, type1, map.cells, player1);
-            createFarmMap(map.width - 20,  0, type2, map.cells, player2);
-            createFarmMap(0,  20, type3, map.cells, player3);
-            createFarmMap(map.width - 20,  20, type4, map.cells, player4);
         }
+
+        createFarmMap(0, 0, type1, map.cells, player1);
+        createFarmMap(map.width - 20,  0, type2, map.cells, player2);
+        createFarmMap(0,  20, type3, map.cells, player3);
+        createFarmMap(map.width - 20,  20, type4, map.cells, player4);
 
         return map;
     }
