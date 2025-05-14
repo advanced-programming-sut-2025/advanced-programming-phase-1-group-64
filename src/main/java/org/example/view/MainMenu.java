@@ -15,6 +15,8 @@ public class MainMenu implements AppMenu{
         Matcher matcher = null;
         if((matcher= MainCommands.LOGOUT.getMatcher(input))!=null){
             System.out.println(controller.logout());
+        }else if((matcher= MainCommands.SHOW.getMatcher(input))!=null){
+            System.out.println("profile menu\navatar menu\ngame menu");
         }else if((matcher= MainCommands.SHOW_MENU.getMatcher(input))!=null) {
             showCurrentMenu();
         }else if((matcher= MainCommands.MENU_ENTER.getMatcher(input))!=null) {
@@ -31,7 +33,7 @@ public class MainMenu implements AppMenu{
     @Override public void menuEnter(String menuName) {
         switch (menuName) {
             case "profile":
-                App.setCurrentMenu(Menu.REGISTER_MENU);
+                App.setCurrentMenu(Menu.PROFILE_MENU);
                 System.out.println("We are now in profile menu");
                 break;
             case "game":

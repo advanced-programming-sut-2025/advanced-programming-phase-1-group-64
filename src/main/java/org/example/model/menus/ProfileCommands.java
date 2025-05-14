@@ -4,7 +4,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public enum ProfileCommands implements Command{
-    CHANGE_USERNAME("change username -u (?<username>\\S+"),
+    CHANGE_USERNAME("change username -u (?<username>\\S+)"),
     CHANGE_NICKNAME("change nickname -n (?<nickname>\\S.*)"),
     CHANGE_EMAIL("change email -e (?<email>\\S+)"),
     CHANGE_PASSWORD("change password -p (?<newPassword>\\S+) -o (?<oldPassword>\\S+)"),
