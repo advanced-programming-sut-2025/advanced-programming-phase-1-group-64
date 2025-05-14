@@ -1,5 +1,8 @@
 package org.example.view;
 
+import org.example.model.context.App;
+import org.example.model.menus.Menu;
+
 import java.util.Scanner;
 
 public class AppScanner {
@@ -7,9 +10,8 @@ public class AppScanner {
 
     public void run(){
         String input = "";
-//        do {
-//            input = scanner.nextLine().trim();
-//            //AppContext.getCurrentMenu().
-//        }
+        do {
+
+        }while (!App.getCurrentMenu().equals(Menu.EXIT_MENU));
     }
 }

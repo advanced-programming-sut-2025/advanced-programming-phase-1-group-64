@@ -43,7 +43,6 @@ public class LoginController {
             return new Result(false, "\nInvalid password");
 
         player.setPassword(newPassword);
-        UserRepository.get().save();
         return new Result(true, "Password changed successfully");
     }
 }

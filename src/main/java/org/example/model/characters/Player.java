@@ -1,5 +1,6 @@
 package org.example.model.characters;
 
+import org.example.controller.EventBus;
 import org.example.model.Result;
 import org.example.model.characters.ability.Ability;
 import org.example.model.characters.inventory.Inventory;
@@ -40,9 +41,18 @@ public class Player extends Character{
     public boolean isStayLoggedIn() {
         return stayLoggedIn;
     }
-    public void setUsername(String username) {this.username = username;}
-    public void setPassword(String password) {this.password = password;}
-    public void setEmail(String email) {this.email = email;}
+    public void setUsername(String username) {
+        this.username = username;
+        EventBus.post(new PlayerChanged(this));
+    }
+    public void setPassword(String password) {
+        this.password = password;
+        EventBus.post(new PlayerChanged(this));
+    }
+    public void setEmail(String email) {
+        this.email = email;
+        EventBus.post(new PlayerChanged(this));
+    }
     public int getHighEarnedPoints() {return highEarnedPoints;}
     public int getGamesPlayed() {return gamesPlayed;}
 
@@ -122,6 +132,7 @@ public class Player extends Character{
 
     public void setMaxEnergy(int maxEnergy) {
         this.maxEnergy = maxEnergy;
+        EventBus.post(new PlayerChanged(this));
     }
 
     public int getCurrentEnergy() {
@@ -130,6 +141,7 @@ public class Player extends Character{
 
     public void setCurrentEnergy(int currentEnergy) {
         this.currentEnergy = currentEnergy;
+        EventBus.post(new PlayerChanged(this));
     }
 
     public boolean isFainted() {
@@ -138,10 +150,12 @@ public class Player extends Character{
 
     public void setFainted(boolean fainted) {
         this.fainted = fainted;
+        EventBus.post(new PlayerChanged(this));
     }
 
     public void setStayLoggedIn(boolean stayLoggedIn) {
         this.stayLoggedIn = stayLoggedIn;
+        EventBus.post(new PlayerChanged(this));
     }
 
     @Override

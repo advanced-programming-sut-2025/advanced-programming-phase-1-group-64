@@ -1,5 +1,7 @@
 package org.example.model.characters;
 
+import org.example.controller.EventBus;
+
 public abstract class Character {
     protected String nickname;
 
@@ -12,5 +14,6 @@ public abstract class Character {
     }
     public void setNickname(String nickname) {
         this.nickname = nickname;
+        EventBus.post(new PlayerChanged((Player) this));
     }
 }

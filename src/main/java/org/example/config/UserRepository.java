@@ -3,7 +3,9 @@ package org.example.config;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
+import org.example.controller.EventBus;
 import org.example.model.characters.Player;
+import org.example.model.characters.PlayerChanged;
 
 import java.io.IOException;
 import java.io.Reader;
@@ -27,7 +29,10 @@ public final class UserRepository {
 
     private static final UserRepository INSTANCE = new UserRepository();
     public static UserRepository get(){return INSTANCE;}
-    private UserRepository() { load(); }
+    private UserRepository() {
+        load();
+        EventBus.register(PlayerChanged.class, evt -> save());
+    }
 
     public synchronized Collection<Player> all() { return users.values(); }
     public synchronized Player find(String user){ return users.get(user); }

@@ -7,7 +7,6 @@ import org.example.model.menus.Menu;
 
 public class MainController {
     public Result logout() {
-        UserRepository.get().save();
         App.setCurrentPlayer(null);
         App.setCurrentMenu(Menu.REGISTER_MENU);
         return new Result(true, "Logged out");
