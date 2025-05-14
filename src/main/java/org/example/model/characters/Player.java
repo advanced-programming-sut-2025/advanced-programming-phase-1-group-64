@@ -46,8 +46,12 @@ public class Player extends Character{
         EventBus.post(new PlayerChanged(this));
     }
     public void setPassword(String password) {
+        password = sha256(password);
         this.password = password;
         EventBus.post(new PlayerChanged(this));
+    }
+    public boolean equalsPassword(String password) {
+        return this.password.equals(sha256(password));
     }
     public void setEmail(String email) {
         this.email = email;

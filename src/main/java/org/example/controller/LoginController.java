@@ -16,7 +16,6 @@ public class LoginController {
         if(!UserRepository.get().exists(username))
             return new Result(false, "Username not found");
         Player player = UserRepository.get().find(username);
-        password = Player.sha256(password);
         if(!password.equals(player.getPassword()))
             return new Result(false, "Wrong password");
         player.setStayLoggedIn(stayLoggedIn);
