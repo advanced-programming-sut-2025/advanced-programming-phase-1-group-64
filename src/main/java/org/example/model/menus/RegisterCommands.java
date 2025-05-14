@@ -4,9 +4,9 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public enum RegisterCommands implements Command{
-    REGISTER("register -u (?<username>\\S+) -p (?<password>\\S+) (?<password_confirm>\\S+) -n (?<nickname>\\S.*) -e (?<email>\\S+) -g (?<gender>\\S+)"),
-    QUESTION("pick question -q (?<question_number>\\d) -a (?<answer>\\S.*) -c (?<answer_confirm>\\S.*)"),
-    MENU_ENTER("menu enter (<?menu>\\S+)"),
+    REGISTER("register -u (?<username>\\S+) -p (?<password>\\S+) (?<passwordConfirm>\\S+) -n (?<nickname>\\S.*) -e (?<email>\\S+) -g (?<gender>\\S+)"),
+    QUESTION("pick question -q (?<questionNumber>\\d) -a (?<answer>\\S.*) -c (?<answerConfirm>\\S.*)"),
+    MENU_ENTER("menu enter (?<menu>\\S+)"),
     EXIT("menu exit"),
     SHOW_MENU("show current menu")
     ;

@@ -16,6 +16,7 @@ public class LoginController {
         if(!UserRepository.get().exists(username))
             return new Result(false, "Username not found");
         Player player = UserRepository.get().find(username);
+        password = Player.sha256(password);
         if(!password.equals(player.getPassword()))
             return new Result(false, "Wrong password");
         player.setStayLoggedIn(stayLoggedIn);
@@ -28,21 +29,24 @@ public class LoginController {
         if(!UserRepository.get().exists(username))
             return new Result(false, "Username not found");
         Player player = UserRepository.get().find(username);
-        System.out.println("Answer your security question please:" + player.getQuestion().getQuestion());
+        System.out.println("Answer your security question please: " + player.getQuestion().getQuestion());
 
         Scanner scanner = AppScanner.scanner;
         String answer = scanner.nextLine();
-        Matcher matcher = LoginCommands.ANSWER.getMatcher(answer);
-        answer = matcher.group("answer");
-        if(!answer.equals(player.getAnswer()))
-            return new Result(false, "Wrong answer");
-        System.out.println("Please enter your new-password:");
-        String newPassword = scanner.nextLine();
+        Matcher matcher = null;
+        if((matcher= LoginCommands.ANSWER.getMatcher(answer))!=null) {
+            answer = matcher.group("answer");
+            if (!answer.equals(player.getAnswer()))
+                return new Result(false, "Wrong answer");
+            System.out.println("Please enter your new-password:");
+            String newPassword = scanner.nextLine();
 
-        if (!Player.isValidPassword(newPassword))
-            return new Result(false, "\nInvalid password");
+            if (!Player.isValidPassword(newPassword))
+                return new Result(false, "\nInvalid password");
 
-        player.setPassword(newPassword);
-        return new Result(true, "Password changed successfully");
+            player.setPassword(newPassword);
+            return new Result(true, "Password changed successfully");
+        }
+        return new Result(false, "Invalid command");
     }
 }

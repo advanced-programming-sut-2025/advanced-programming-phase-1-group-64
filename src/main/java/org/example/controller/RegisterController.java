@@ -19,7 +19,7 @@ public class RegisterController {
         int counter = 0;
 
         for (Player player : UserRepository.get().all()) {
-            if (player.getUsername().matches(username))
+            if (player.getUsername().contains(username))
                 counter++;
         }
 
@@ -64,6 +64,12 @@ public class RegisterController {
         if (UserRepository.get().exists(username)) {
             username = changeUsername(username);
             System.out.println("This username is already taken, your new username is: " + username);
+            String choice = "";
+            System.out.println("Enter new username or continue: ");
+            choice = scanner.nextLine();
+            if(!choice.equals("continue")){
+                username = choice;
+            }
         }
         if (!Player.isValidUsername(username))
             return new Result(false, "Invalid username");
@@ -90,6 +96,7 @@ public class RegisterController {
         }
         Gender gen = Gender.getGender(gender);
 
+        System.out.println("Select one question and answer it:");
         System.out.println("1- "+ SecurityQuestion.Q1.getQuestion()+
                 "\n2- "+ SecurityQuestion.Q2.getQuestion()+
                 "\n3- "+ SecurityQuestion.Q3.getQuestion()+
@@ -97,22 +104,25 @@ public class RegisterController {
                 "\n5- "+ SecurityQuestion.Q5.getQuestion());
 
         String choiceQuestion = scanner.nextLine();
-        Matcher matcher = RegisterCommands.QUESTION.getMatcher(choiceQuestion);
+        Matcher matcher = null;
 
-        String questionNumber = matcher.group("question_number");
-        String answer = matcher.group("answer");
-        String answerConfirm = matcher.group("answer_confirm");
-        while (!answer.equals(answerConfirm)){
-            System.out.println("Enter your answer again or exit :");
-            answerConfirm = scanner.nextLine();
-            if (answerConfirm.equalsIgnoreCase("exit")) return new Result(false, "Back to register menu");
+        if((matcher= RegisterCommands.QUESTION.getMatcher(choiceQuestion))!=null) {
+            String questionNumber = matcher.group("questionNumber");
+            String answer = matcher.group("answer");
+            String answerConfirm = matcher.group("answerConfirm");
+            while (!answer.equals(answerConfirm)) {
+                System.out.println("Enter your answer again or exit :");
+                answerConfirm = scanner.nextLine();
+                if (answerConfirm.equalsIgnoreCase("exit")) return new Result(false, "Back to register menu");
+            }
+
+            SecurityQuestion question = SecurityQuestion.getQuestion(questionNumber);
+            password = Player.sha256(password);
+            Player player = new Player(nickname, username, password, email, gen, question, answer);
+            UserRepository.get().add(player);
+            App.setCurrentMenu(Menu.LOGIN_MENU);
+            return new Result(true, "Register successful");
         }
-
-        SecurityQuestion question = SecurityQuestion.getQuestion(questionNumber);
-        password = Player.sha256(password);
-        Player player = new Player(nickname, username, password, email, gen, question, answer);
-        UserRepository.get().add(player);
-        App.setCurrentMenu(Menu.LOGIN_MENU);
-        return new Result(true, "Register successful");
+        return new Result(false, "Invalid command");
     }
 }

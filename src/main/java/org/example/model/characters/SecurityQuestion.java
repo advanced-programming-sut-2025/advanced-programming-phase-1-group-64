@@ -1,11 +1,11 @@
 package org.example.model.characters;
 
 public enum SecurityQuestion {
-    Q1("aaa"),
-    Q2("bbb"),
-    Q3("ccc"),
-    Q4("ddd"),
-    Q5("eee");
+    Q1("In what city did you attend elementary school?"),
+    Q2("What was the name of your first teacher?"),
+    Q3("What is the name of your childhood best friend?"),
+    Q4("What was the make or model of your first vehicle?"),
+    Q5("What street did you live on when you were ten years old?");
 
     private final String question;
 

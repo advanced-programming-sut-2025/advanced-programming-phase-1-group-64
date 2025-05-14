@@ -11,7 +11,8 @@ public class AppScanner {
     public void run(){
         String input = "";
         do {
-
-        }while (!App.getCurrentMenu().equals(Menu.EXIT_MENU));
+            input = scanner.nextLine().trim();
+            App.getCurrentMenu().checkCommand(input);
+        }while (App.getCurrentMenu() != (Menu.EXIT_MENU));
     }
 }

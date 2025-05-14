@@ -1,0 +1,49 @@
+{
+  "AmirMDNasiri": {
+    "username": "AmirMDNasiri",
+    "password": "051406536b1e443d2302298ea7f94412321ab15cc17f2ac826194c920dafe059",
+    "email": "amirsana8587@gmail.com",
+    "question": "Q3",
+    "answer": "Kitty",
+    "stayLoggedIn": false,
+    "highEarnedPoints": 0,
+    "gamesPlayed": 0,
+    "isInGame": false,
+    "currentEnergy": 0,
+    "maxEnergy": 200,
+    "fainted": false,
+    "nickname": "AmirKing"
+  },
+  "AmirMoh": {
+    "username": "AmirMoh",
+    "password": "27b393b2144da00fada1b6bb0f703840e6a952f5ac8494b603d96350ccd5bb7b",
+    "email": "amirsana8587@gmail.com",
+    "gender": "MALE",
+    "question": "Q1",
+    "answer": "Tehran",
+    "stayLoggedIn": false,
+    "highEarnedPoints": 0,
+    "gamesPlayed": 0,
+    "isInGame": false,
+    "currentEnergy": 0,
+    "maxEnergy": 200,
+    "fainted": false,
+    "nickname": "mar o pele"
+  },
+  "AmirMDNasiri-1": {
+    "username": "AmirMDNasiri-1",
+    "password": "624d2148ec237df92ea2ab2d0588c0df15113873f867c15bf98b317833de3811",
+    "email": "djfslajf2@gmail.cpm",
+    "gender": "MALE",
+    "question": "Q3",
+    "answer": "Hasan",
+    "stayLoggedIn": false,
+    "highEarnedPoints": 0,
+    "gamesPlayed": 0,
+    "isInGame": false,
+    "currentEnergy": 0,
+    "maxEnergy": 200,
+    "fainted": false,
+    "nickname": "Abbas"
+  }
+}

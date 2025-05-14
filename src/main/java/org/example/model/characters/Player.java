@@ -73,16 +73,22 @@ public class Player extends Character{
         return email.matches(regex);
     }
     public static boolean isValidPassword(String password) {
-        if (!Player.isValidPassword(password))
-            System.out.printf("Invalid password");
-        if (password.length()<8)
+        if (password.length()<8) {
             System.out.printf("Password must be at least 8 characters");
-        if (!password.matches("[a-z]"))
+            return false;
+        }
+        if (!password.matches(".*[a-z].*")) {
             System.out.printf("Password must contain at least one lowercase letter");
-        if (!password.matches("[A-Z]"))
+            return false;
+        }
+        if (!password.matches(".*[A-Z].*")) {
             System.out.printf("Password must contain at least one uppercase letter");
-        if (!password.matches("[!#$%^&*)(=+}{\\]\\[|/\\\\:;'\",><?]"))
+            return false;
+        }
+        if (!password.matches(".*[!#$%^&*)(=+}{\\]\\[|/\\\\:;'\",><?].*")) {
             System.out.printf("Password must contain at least one special character");
+            return false;
+        }
         String regex = "^[a-zA-Z0-9?<>,\"';:\\\\/|\\]\\[}{+=)(*&^%$#!]+$";
         return password.matches(regex);
     }

@@ -9,7 +9,7 @@ public enum ProfileCommands implements Command{
     CHANGE_EMAIL("change email -e (?<email>\\S+)"),
     CHANGE_PASSWORD("change password -p (?<newPassword>\\S+) -o (?<oldPassword>\\S+)"),
     USER_INFO("user info"),
-    MENU_ENTER("menu enter (<?menu>\\S+)"),
+    MENU_ENTER("menu enter (?<menu>\\S+)"),
     EXIT("menu exit"),
     SHOW_MENU("show current menu")
     ;
