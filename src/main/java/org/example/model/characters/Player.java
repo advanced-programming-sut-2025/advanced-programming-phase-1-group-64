@@ -4,6 +4,7 @@ import org.example.controller.EventBus;
 import org.example.model.Result;
 import org.example.model.characters.ability.Ability;
 import org.example.model.characters.inventory.Inventory;
+import org.example.model.context.Game;
 import org.example.model.world.Cell;
 
 import java.security.MessageDigest;
@@ -126,6 +127,25 @@ public class Player extends Character{
     }
 
     private boolean isInGame;
+    private Game currentGame;
+
+    public boolean isInGame() {
+        return isInGame;
+    }
+
+    public void setInGame(boolean inGame) {
+        isInGame = inGame;
+        EventBus.post(new PlayerChanged(this));
+    }
+
+    public Game getCurrentGame() {
+        return currentGame;
+    }
+
+    public void setCurrentGame(Game currentGame) {
+        this.currentGame = currentGame;
+        EventBus.post(new PlayerChanged(this));
+    }
 
     private int currentEnergy;
     private int maxEnergy = 200;
