@@ -233,7 +233,7 @@ public class Map {
     }
 
     private static void fillCenterArea(Cell[][] cells, int startX, int startY, int width, int height) {
-        List<TreeSpec> allTreeTypes = (List<TreeSpec>) TreeConfig.all();
+        List<TreeSpec> allTreeTypes = new ArrayList<>(TreeConfig.all());
         if (allTreeTypes.isEmpty()) return;
 
         List<TreeSpec> placedTrees = new ArrayList<>();
