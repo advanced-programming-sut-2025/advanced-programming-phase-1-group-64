@@ -69,4 +69,12 @@ public final class UserRepository {
             throw new IllegalStateException("Cannot write users.json", e);
         }
     }
+
+    public synchronized Player findStayLoggedIn(){
+        return users.values()
+                .stream()
+                .filter(Player::isStayLoggedIn)
+                .findFirst()
+                .orElse(null);
+    }
 }

@@ -40,10 +40,10 @@ public class ProfileController {
         Player player = App.getCurrentPlayer();
         if (!Player.isValidPassword(newPassword))
             return new Result(false, "\nInvalid password");
-        if(!player.getPassword().equals(newPassword))
-            return new Result(false, "Password does not match");
         if(!player.getPassword().equals(oldPassword))
             return new Result(false, "Password does not match");
+        if(player.equalsPassword(newPassword))
+            return new Result(false, "Password already taken");
 
         player.setPassword(newPassword);
 

@@ -21,7 +21,7 @@
     "gender": "MALE",
     "question": "Q1",
     "answer": "Tehran",
-    "stayLoggedIn": false,
+    "stayLoggedIn": true,
     "highEarnedPoints": 0,
     "gamesPlayed": 0,
     "isInGame": false,

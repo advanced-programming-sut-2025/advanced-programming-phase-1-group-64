@@ -4,7 +4,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public enum LoginCommands implements Command {
-    LOGIN("login -u (?<username>\\S+) -p (?<password>\\S+)(?<stay> –stay-logged-in)?"),
+    LOGIN("login -u (?<username>\\S+) -p (?<password>\\S+)(?<stay> -stay-logged-in)?"),
     FORGET_PASSWORD("forget password -u (?<username>\\S+)"),
     ANSWER("answer -a (?<answer>\\S.*)"),
     MENU_ENTER("menu enter (?<menu>\\S+)"),
