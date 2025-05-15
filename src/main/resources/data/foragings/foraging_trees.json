@@ -1,0 +1,17 @@
+{
+  "Acorns": {
+    "treeSpec": "Oak Tree"
+  },
+  "Maple Seeds": {
+    "treeSpec": "Maple Tree"
+  },
+  "Pine Cones": {
+    "treeSpec": "Pine Tree"
+  },
+  "Mahogany Seeds": {
+    "treeSpec": "Mahogany Tree"
+  },
+  "Mushroom Tree Seeds": {
+    "treeSpec": "Mushroom Tree"
+  }
+}

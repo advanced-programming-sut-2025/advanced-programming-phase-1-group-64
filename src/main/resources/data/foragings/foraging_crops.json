@@ -1,0 +1,117 @@
+{
+  "Common Mushroom": {
+    "Seasons": "SPRING & SUMMER & FALL & WINTER",
+    "BaseSellPrice": 40,
+    "energy": 38
+  },
+  "Daffodil": {
+    "Seasons": "SPRING",
+    "BaseSellPrice": 30,
+    "energy": 0
+  },
+  "Dandelion": {
+    "Seasons": "SPRING",
+    "BaseSellPrice": 40,
+    "energy": 25
+  },
+  "Leek": {
+    "Seasons": "SPRING",
+    "BaseSellPrice": 60,
+    "energy": 40
+  },
+  "Morel": {
+    "Seasons": "SPRING",
+    "BaseSellPrice": 150,
+    "energy": 20
+  },
+  "Salmonberry": {
+    "Seasons": "SPRING",
+    "BaseSellPrice": 5,
+    "energy": 25
+  },
+  "Spring Onion": {
+    "Seasons": "SPRING",
+    "BaseSellPrice": 8,
+    "energy": 13
+  },
+  "Wild Horseradish": {
+    "Seasons": "SPRING",
+    "BaseSellPrice": 50,
+    "energy": 13
+  },
+  "Fiddlehead Fern": {
+    "Seasons": "SUMMER",
+    "BaseSellPrice": 90,
+    "energy": 25
+  },
+  "Grape": {
+    "Seasons": "SUMMER",
+    "BaseSellPrice": 80,
+    "energy": 38
+  },
+  "Red Mushroom": {
+    "Seasons": "SUMMER",
+    "BaseSellPrice": 75,
+    "energy": -50
+  },
+  "Spice Berry": {
+    "Seasons": "SUMMER",
+    "BaseSellPrice": 80,
+    "energy": 25
+  },
+  "Sweet Pea": {
+    "Seasons": "SUMMER",
+    "BaseSellPrice": 50,
+    "energy": 0
+  },
+  "Blackberry": {
+    "Seasons": "FALL",
+    "BaseSellPrice": 25,
+    "energy": 25
+  },
+  "Chanterelle": {
+    "Seasons": "FALL",
+    "BaseSellPrice": 160,
+    "energy": 75
+  },
+  "Hazelnut": {
+    "Seasons": "FALL",
+    "BaseSellPrice": 40,
+    "energy": 38
+  },
+  "Purple Mushroom": {
+    "Seasons": "FALL",
+    "BaseSellPrice": 90,
+    "energy": 30
+  },
+  "Wild Plum": {
+    "Seasons": "FALL",
+    "BaseSellPrice": 80,
+    "energy": 25
+  },
+  "Crocus": {
+    "Seasons": "WINTER",
+    "BaseSellPrice": 60,
+    "energy": 0
+  },
+  "Crystal Fruit": {
+    "Seasons": "WINTER",
+    "BaseSellPrice": 150,
+    "energy": 63
+  },
+  "Holly": {
+    "Seasons": "WINTER",
+    "BaseSellPrice": 80,
+    "energy": -37
+  },
+  "Snow Yam": {
+    "Seasons": "WINTER",
+    "BaseSellPrice": 100,
+    "energy": 30
+  },
+  "Winter Root": {
+    "Seasons": "WINTER",
+    "BaseSellPrice": 70,
+    "energy": 25
+  }
+}

@@ -1,6 +1,6 @@
 package org.example.controller;
 
-import org.example.config.UserRepository;
+import org.example.config.repositories.UserRepo;
 import org.example.model.Result;
 import org.example.model.characters.Player;
 import org.example.model.context.App;
@@ -13,9 +13,9 @@ import java.util.regex.Matcher;
 
 public class LoginController {
     public Result login(String username, String password, boolean stayLoggedIn){
-        if(!UserRepository.get().exists(username))
+        if(!UserRepo.get().exists(username))
             return new Result(false, "Username not found");
-        Player player = UserRepository.get().find(username);
+        Player player = UserRepo.get().find(username);
         if(!player.equalsPassword(password))
             return new Result(false, "Wrong password");
         player.setStayLoggedIn(stayLoggedIn);
@@ -25,9 +25,9 @@ public class LoginController {
     }
 
     public Result forgetPassword(String username){
-        if(!UserRepository.get().exists(username))
+        if(!UserRepo.get().exists(username))
             return new Result(false, "Username not found");
-        Player player = UserRepository.get().find(username);
+        Player player = UserRepo.get().find(username);
         System.out.println("Answer your security question please: " + player.getQuestion().getQuestion());
 
         Scanner scanner = AppScanner.scanner;

@@ -1,6 +1,5 @@
 package org.example.controller;
 
-import org.example.config.UserRepository;
 import org.example.model.Result;
 import org.example.model.characters.Player;
 import org.example.model.context.App;

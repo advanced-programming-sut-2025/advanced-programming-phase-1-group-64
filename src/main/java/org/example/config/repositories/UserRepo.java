@@ -1,4 +1,4 @@
-package org.example.config;
+package org.example.config.repositories;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -20,16 +20,16 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
-public final class UserRepository {
+public final class UserRepo {
     private static final Path FILE = Paths.get("data", "users.json");
     private static final Gson GSON = new GsonBuilder()
             .setPrettyPrinting()
             .create();
     private final Map<String, Player> users = new HashMap<>();
 
-    private static final UserRepository INSTANCE = new UserRepository();
-    public static UserRepository get(){return INSTANCE;}
-    private UserRepository() {
+    private static final UserRepo INSTANCE = new UserRepo();
+    public static UserRepo get(){return INSTANCE;}
+    private UserRepo() {
         load();
         EventBus.register(PlayerChanged.class, evt -> save());
     }

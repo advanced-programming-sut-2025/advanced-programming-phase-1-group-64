@@ -1,0 +1,70 @@
+{
+  "Quartz": {
+    "description": "A clear crystal commonly found in caves and mines.",
+    "sellPrice": 25
+  },
+  "Earth Crystal": {
+    "description": "A resinous substance found near the surface.",
+    "sellPrice": 50
+  },
+  "Frozen Tear": {
+    "description": "A crystal fabled to be the frozen tears of a yeti.",
+    "sellPrice": 75
+  },
+  "Fire Quartz": {
+    "description": "A glowing red crystal commonly found near hot lava.",
+    "sellPrice": 100
+  },
+  "Emerald": {
+    "description": "A precious stone with a brilliant green color.",
+    "sellPrice": 250
+  },
+  "Aquamarine": {
+    "description": "A shimmery blue-green gem.",
+    "sellPrice": 180
+  },
+  "Ruby": {
+    "description": "A precious stone that is sought after for its rich color and beautiful luster.",
+    "sellPrice": 250
+  },
+  "Amethyst": {
+    "description": "A purple variant of quartz.",
+    "sellPrice": 100
+  },
+  "Topaz": {
+    "description": "Fairly common but still prized for its beauty.",
+    "sellPrice": 80
+  },
+  "Jade": {
+    "description": "A pale green ornamental stone.",
+    "sellPrice": 200
+  },
+  "Diamond": {
+    "description": "A rare and valuable gem.",
+    "sellPrice": 750
+  },
+  "Prismatic Shard": {
+    "description": "A very rare and powerful substance with unknown origins.",
+    "sellPrice": 2000
+  },
+  "Copper": {
+    "description": "A common ore that can be smelted into bars.",
+    "sellPrice": 5
+  },
+  "Iron": {
+    "description": "A fairly common ore that can be smelted into bars.",
+    "sellPrice": 10
+  },
+  "Gold": {
+    "description": "A precious ore that can be smelted into bars.",
+    "sellPrice": 25
+  },
+  "Iridium": {
+    "description": "An exotic ore with many curious properties. Can be smelted into bars.",
+    "sellPrice": 100
+  },
+  "Coal": {
+    "description": "A combustible rock that is useful for crafting and smelting.",
+    "sellPrice": 15
+  }
+}

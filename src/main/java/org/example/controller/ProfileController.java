@@ -1,6 +1,6 @@
 package org.example.controller;
 
-import org.example.config.UserRepository;
+import org.example.config.repositories.UserRepo;
 import org.example.model.Result;
 import org.example.model.characters.Player;
 import org.example.model.context.App;
@@ -12,7 +12,7 @@ public class ProfileController {
             return new Result(false, "Invalid username");
         if(player.getUsername().equals(newUsername))
             return new Result(false, "Your new username is the same");
-        if(UserRepository.get().exists(newUsername))
+        if(UserRepo.get().exists(newUsername))
             return new Result(false, "Username already exists");
 
         player.setUsername(newUsername);

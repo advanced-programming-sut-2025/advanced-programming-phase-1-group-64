@@ -1,6 +1,6 @@
 package org.example.controller;
 
-import org.example.config.UserRepository;
+import org.example.config.repositories.UserRepo;
 import org.example.model.Result;
 import org.example.model.characters.Gender;
 import org.example.model.characters.Player;
@@ -18,7 +18,7 @@ public class RegisterController {
     private String changeUsername(String username) {
         int counter = 0;
 
-        for (Player player : UserRepository.get().all()) {
+        for (Player player : UserRepo.get().all()) {
             if (player.getUsername().contains(username))
                 counter++;
         }
@@ -61,7 +61,7 @@ public class RegisterController {
 
         Scanner scanner = AppScanner.scanner;
 
-        if (UserRepository.get().exists(username)) {
+        if (UserRepo.get().exists(username)) {
             username = changeUsername(username);
             System.out.println("This username is already taken, your new username is: " + username);
             String choice = "";
@@ -119,7 +119,7 @@ public class RegisterController {
             SecurityQuestion question = SecurityQuestion.getQuestion(questionNumber);
             password = Player.sha256(password);
             Player player = new Player(nickname, username, password, email, gen, question, answer);
-            UserRepository.get().add(player);
+            UserRepo.get().add(player);
             App.setCurrentMenu(Menu.LOGIN_MENU);
             return new Result(true, "Register successful");
         }

@@ -3,8 +3,8 @@ package org.example.model.menus;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public enum GameCommands implements Command {
-    PLAY("game new -u (?<username_1>\\S+)? (?<username_2>\\S+)? (?<username_3>\\S+)?"),
+public enum GameMenuCommands implements Command {
+    PLAY("^game new -u (?<u1>\\S+)(?<u2> \\S+)?(?<u3> \\S+)?$"),
     MENU_ENTER("menu enter (?<menu>\\S+)"),
     EXIT("menu exit"),
     SHOW_MENU("show current menu"),
@@ -12,7 +12,7 @@ public enum GameCommands implements Command {
 
     private final String pattern;
 
-    GameCommands(String pattern) {
+    GameMenuCommands(String pattern) {
         this.pattern = pattern;
     }
 
