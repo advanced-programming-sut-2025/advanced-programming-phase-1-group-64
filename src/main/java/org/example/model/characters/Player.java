@@ -132,7 +132,6 @@ public class Player extends Character{
     public boolean isInGame() {
         return isInGame;
     }
-
     public void setInGame(boolean inGame) {
         isInGame = inGame;
         EventBus.post(new PlayerChanged(this));
@@ -141,7 +140,6 @@ public class Player extends Character{
     public Game getCurrentGame() {
         return currentGame;
     }
-
     public void setCurrentGame(Game currentGame) {
         this.currentGame = currentGame;
         EventBus.post(new PlayerChanged(this));
@@ -156,10 +154,39 @@ public class Player extends Character{
     private Ability farming,mining,foraging, fishing;
     private Inventory inventory;
 
+    public Ability farming() {
+        return farming;
+    }
+    public Ability mining() {
+        return mining;
+    }
+    public Ability foraging() {
+        return foraging;
+    }
+    public Ability fishing() {
+        return fishing;
+    }
+    public void setFarming(Ability farming) {
+        this.farming = farming;
+    }
+    public void setMining(Ability mining) {
+        this.mining = mining;
+    }
+    public void setForaging(Ability foraging) {
+        this.foraging = foraging;
+    }
+    public void setFishing(Ability fishing) {
+        this.fishing = fishing;
+    }
+
+    public Inventory inventory() {
+        return inventory;
+    }
+    public void setInventory(Inventory inventory) {this.inventory = inventory;}
+
     public int getMaxEnergy() {
         return maxEnergy;
     }
-
     public void setMaxEnergy(int maxEnergy) {
         this.maxEnergy = maxEnergy;
         EventBus.post(new PlayerChanged(this));
@@ -168,7 +195,6 @@ public class Player extends Character{
     public int getCurrentEnergy() {
         return currentEnergy;
     }
-
     public void setCurrentEnergy(int currentEnergy) {
         this.currentEnergy = currentEnergy;
         EventBus.post(new PlayerChanged(this));
@@ -177,7 +203,6 @@ public class Player extends Character{
     public boolean isFainted() {
         return fainted;
     }
-
     public void setFainted(boolean fainted) {
         this.fainted = fainted;
         EventBus.post(new PlayerChanged(this));
