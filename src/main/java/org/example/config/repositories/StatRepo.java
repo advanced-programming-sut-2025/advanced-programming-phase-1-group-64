@@ -12,7 +12,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 
-public class StatRepo {
+public final class StatRepo {
     private static final Path FILE = Paths.get("data", "stats.json");
     private static final Gson GSON = new Gson();
 

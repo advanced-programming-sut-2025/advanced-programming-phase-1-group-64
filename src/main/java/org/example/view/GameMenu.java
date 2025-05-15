@@ -2,8 +2,11 @@ package org.example.view;
 
 import org.example.controller.GameMenuController;
 import org.example.model.context.App;
+import org.example.model.menus.GameMenuCommands;
 import org.example.model.menus.Menu;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.regex.Matcher;
 
 public class GameMenu implements AppMenu{
@@ -11,6 +14,22 @@ public class GameMenu implements AppMenu{
 
     @Override public void check(String input) {
         Matcher matcher = null;
+        if((matcher= GameMenuCommands.PLAY.getMatcher(input))!=null){
+            List<String> usernames = new ArrayList<>();
+            for (String g : List.of("u1", "u2", "u3")) {
+                String val = matcher.group(g);
+                if (val != null) usernames.add(val);
+            }
+            System.out.println(controller.play(usernames));
+        }else if((matcher= GameMenuCommands.SHOW_MENU.getMatcher(input))!=null){
+            showCurrentMenu();
+        }else if((matcher= GameMenuCommands.MENU_ENTER.getMatcher(input))!=null){
+            menuEnter(matcher.group("menu"));
+        }else if((matcher= GameMenuCommands.EXIT.getMatcher(input))!=null){
+            menuExit();
+        }else {
+            System.out.println("Invalid command");
+        }
     }
     @Override public void showCurrentMenu() {
         System.out.println("game menu");

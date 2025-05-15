@@ -6,6 +6,7 @@ import org.example.model.characters.ability.Ability;
 import org.example.model.characters.inventory.Inventory;
 import org.example.model.context.Game;
 import org.example.model.world.Cell;
+import org.example.model.world.buildings.Greenhouse;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -127,7 +128,7 @@ public class Player extends Character{
     }
 
     private boolean isInGame;
-    private Game currentGame;
+    private int currentGameId;
 
     public boolean isInGame() {
         return isInGame;
@@ -137,11 +138,11 @@ public class Player extends Character{
         EventBus.post(new PlayerChanged(this));
     }
 
-    public Game getCurrentGame() {
-        return currentGame;
+    public int getCurrentGameId() {
+        return currentGameId;
     }
-    public void setCurrentGame(Game currentGame) {
-        this.currentGame = currentGame;
+    public void setCurrentGame(int id) {
+        this.currentGameId = id;
         EventBus.post(new PlayerChanged(this));
     }
 
@@ -153,6 +154,7 @@ public class Player extends Character{
 
     private Ability farming,mining,foraging, fishing;
     private Inventory inventory;
+    private Greenhouse greenhouse;
 
     public Ability farming() {
         return farming;
@@ -183,6 +185,13 @@ public class Player extends Character{
         return inventory;
     }
     public void setInventory(Inventory inventory) {this.inventory = inventory;}
+
+    public Greenhouse getGreenhouse() {
+        return greenhouse;
+    }
+    public void setGreenhouse(Greenhouse greenhouse) {
+        this.greenhouse = greenhouse;
+    }
 
     public int getMaxEnergy() {
         return maxEnergy;

@@ -6,4 +6,8 @@ public class Greenhouse {
     private static final int WOOD_COST = 500;
     private static final int COIN_COST = 1000;
     private boolean built;
+
+    public Greenhouse() {
+        this.built = false;
+    }
 }

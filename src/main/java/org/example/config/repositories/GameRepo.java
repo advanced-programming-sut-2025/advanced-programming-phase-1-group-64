@@ -14,7 +14,7 @@ import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.util.Optional;
 
-public class GameRepo {
+public final class GameRepo {
     private static final Path DIR = Paths.get("data", "games");
     private static final Gson GSON = new GsonBuilder()
             .setPrettyPrinting()

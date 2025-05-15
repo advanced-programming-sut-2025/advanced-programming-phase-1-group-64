@@ -46,6 +46,7 @@ public class MainMenu implements AppMenu{
         }
     }
     @Override public void menuExit() {
-        App.setCurrentMenu(Menu.EXIT_MENU);
+        App.setCurrentMenu(Menu.REGISTER_MENU);
+        System.out.println("We are now in register menu");
     }
 }
