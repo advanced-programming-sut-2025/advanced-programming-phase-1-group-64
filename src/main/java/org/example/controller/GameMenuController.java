@@ -8,7 +8,6 @@ import org.example.model.characters.ability.AbilityType;
 import org.example.model.characters.inventory.Inventory;
 import org.example.model.context.App;
 import org.example.model.context.Game;
-import org.example.model.items.tools.ToolFactory;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,5 +35,7 @@ public class GameMenuController {
             player.setFishing(new Ability(AbilityType.FISHING));
             player.setInventory(new Inventory());
         }
+
+        return new Result(true, "game created successfully");
     }
 }
