@@ -1,0 +1,141 @@
+{
+  "Cherry Bomb": {
+    "recipe": {
+      "Copper Ore": 4,
+      "Coal": 1
+    }
+  },
+  "Bomb": {
+    "recipe": {
+      "Iron Ore": 4,
+      "Coal": 1
+    }
+  },
+  "Mega Bomb": {
+    "recipe": {
+      "Gold Ore": 4,
+      "Coal": 1
+    }
+  },
+  "Sprinkler": {
+    "recipe": {
+      "Copper Bar": 1,
+      "Iron Bar": 1
+    }
+  },
+  "Quality Sprinkler": {
+    "recipe": {
+      "Iron Bar": 1,
+      "Gold Bar": 1
+    }
+  },
+  "Iridium Sprinkler": {
+    "recipe": {
+      "Gold Bar": 1,
+      "Iridium Bar": 1
+    }
+  },
+  "Charcoal Klin": {
+    "recipe": {
+      "Wood": 20,
+      "Copper Bar": 2
+    }
+  },
+  "Furnace": {
+    "recipe": {
+      "Copper Ore": 20,
+      "Stone": 25
+    }
+  },
+  "Scarecrow": {
+    "recipe": {
+      "Wood": 50,
+      "Coal": 1,
+      "Fiber": 20
+    }
+  },
+  "Deluxe Scarecrow": {
+    "recipe": {
+      "Wood": 50,
+      "Coal": 1,
+      "Fiber": 20,
+      "Iridium Ore": 1
+    }
+  },
+  "Bee House": {
+    "recipe": {
+      "Wood": 40,
+      "Coal": 8,
+      "Iron Bar": 1
+    }
+  },
+  "Cheese Press": {
+    "recipe": {
+      "Wood": 45,
+      "Stone": 45,
+      "Copper Bar": 1
+    }
+  },
+  "Keg": {
+    "recipe": {
+      "Wood": 30,
+      "Copper Bar": 1,
+      "Iron Bar": 1
+    }
+  },
+  "Loom": {
+    "recipe": {
+      "Wood": 60,
+      "Fiber": 30
+    }
+  },
+  "Mayonnaise Machine": {
+    "recipe": {
+      "Wood": 15,
+      "Stone": 15,
+      "Copper Bar": 1
+    }
+  },
+  "Oil Maker": {
+    "recipe": {
+      "Wood": 100,
+      "Gold Bar": 1,
+      "Iron Bar": 1
+    }
+  },
+  "Preserves Jar": {
+    "recipe": {
+      "Wood": 50,
+      "Stone": 40,
+      "Coal": 8
+    }
+  },
+  "Dehydrator": {
+    "recipe": {
+      "Wood": 30,
+      "Stone": 20,
+      "Fiber": 30
+    }
+  },
+  "Grass Starter": {
+    "recipe": {
+      "Wood": 1,
+      "Fiber": 1
+    }
+  },
+  "Fish Smoker": {
+    "recipe": {
+      "Wood": 50,
+      "Iron Bar": 3,
+      "Coal": 10
+    }
+  },
+  "Mystic Tree Seed": {
+    "recipe": {
+      "Acorn": 5,
+      "Maple Seed": 5,
+      "Pine Cone": 5,
+      "Mahogany Seed": 5
+    }
+  }
+}

@@ -1,5 +1,7 @@
 package org.example.model.world.time;
 
+import org.example.model.context.Game;
+
 public class Time {
     private int elapsedHours;
 
@@ -32,12 +34,35 @@ public class Time {
         if (hours < 0) {
             throw new IllegalArgumentException("Hours cannot be negative");
         }
+        int remainingHours = HOURS_PER_DAY - (elapsedHours%HOURS_PER_DAY);
+        if (hours > remainingHours) {
+            throw new IllegalArgumentException("Hours cannot be greater than " + remainingHours);
+        }
         this.elapsedHours += hours;
+        // تابع های ساعتی
+        //TODO
     }
     public void advanceDays(int days){
         if (days < 0) {
             throw new IllegalArgumentException("Days cannot be negative");
         }
+        int remainingHours = HOURS_PER_DAY - (elapsedHours%HOURS_PER_DAY);
+        advanceHours(remainingHours);
         this.elapsedHours += days * HOURS_PER_DAY;
+    }
+
+    public void nextHours(Game g) {
+        elapsedHours++;
+        // تابع های ساعتی
+        if(elapsedHours % HOURS_PER_DAY == 0){
+            // تابع های روزانه + // تابع های ساعتی
+            g.getSeason().setToday(Season.predictWeather());
+            if(g.getSeason().getTomorrow() != null) {
+                g.getSeason().setToday(g.getSeason().getTomorrow());
+                g.getSeason().setTomorrow(null);
+            }
+            if(g.getSeason().getToday() == WeatherType.STORM)
+                g.getSeason().thor();
+        }
     }
 }

@@ -1,17 +1,20 @@
 package org.example.model.world;
 
 public enum CellKind {
-    EMPTY(' ', "Empty Cell"),
+    EMPTY('.', "Empty Cell"),
+    GRASS('*', "Grass Cell"),
+    PLOW('+', "Plowed Cell"),
+    PLANT('~', "Plant Cell"),
+    WOOD('W', "Wood Cell"),
     TREE ('T', "Tree"),
+    BURNED_TREE('B', "Burned Tree"),
     ROCK ('R', "Rock"),
-    WATER ('W', "Water"),
+    LAKE('L', "Water"),
     GREENHOUSE('G', "Green House"),
     HOME('H', "Home"),
     MINE('M', "Mine"),
     WALK('-', "Street Between Farms"),
-    VILLAGE('V', "Village"),
-    FARM('+', "Empty Cell In Farm"),
-    FORAGING('F', "Foraging");
+    VILLAGE('V', "Village");
 
     private char cellChar;
     private String cellName;
@@ -20,14 +23,6 @@ public enum CellKind {
     CellKind(char cellChar, String cellName) {
         this.cellChar = cellChar;
         this.cellName = cellName;
-    }
-
-    public Object getObject() {
-        return object;
-    }
-
-    public void setObject(Object object) {
-        this.object = object;
     }
 
     public char getCellChar() {
@@ -39,6 +34,6 @@ public enum CellKind {
     }
 
     public boolean canHoldObject() {
-        return this == TREE || this == FORAGING || this == ROCK;
+        return this == TREE || this == ROCK || this == MINE || this == PLANT || this == WOOD;
     }
 }

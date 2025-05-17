@@ -1,0 +1,121 @@
+{
+  "id": 4,
+  "players": [
+    {
+      "username": "AmirMoh",
+      "password": "624d2148ec237df92ea2ab2d0588c0df15113873f867c15bf98b317833de3811",
+      "email": "amirsana8587@gmail.com",
+      "gender": "MALE",
+      "question": "Q3",
+      "answer": "GPT",
+      "stayLoggedIn": true,
+      "highEarnedPoints": 0,
+      "gamesPlayed": 2,
+      "isInGame": false,
+      "currentGameId": 3,
+      "currentEnergy": -400,
+      "maxEnergy": 200,
+      "fainted": false,
+      "cellX": 0,
+      "cellY": 0,
+      "farming": {
+        "ability": "FARMING",
+        "level": 0,
+        "xp": 0,
+        "isMax": false
+      },
+      "mining": {
+        "ability": "MINING",
+        "level": 0,
+        "xp": 0,
+        "isMax": false
+      },
+      "foraging": {
+        "ability": "FORAGING",
+        "level": 0,
+        "xp": 0,
+        "isMax": false
+      },
+      "fishing": {
+        "ability": "FISHING",
+        "level": 0,
+        "xp": 0,
+        "isMax": false
+      },
+      "nickname": "Amiiir"
+    },
+    {
+      "username": "AmirKing",
+      "password": "624d2148ec237df92ea2ab2d0588c0df15113873f867c15bf98b317833de3811",
+      "email": "amirsana8587@gmail.com",
+      "gender": "MALE",
+      "question": "Q3",
+      "answer": "GPT",
+      "stayLoggedIn": false,
+      "highEarnedPoints": 0,
+      "gamesPlayed": 0,
+      "isInGame": false,
+      "currentGameId": 0,
+      "currentEnergy": 0,
+      "maxEnergy": 200,
+      "fainted": false,
+      "cellX": 0,
+      "cellY": 0,
+      "nickname": "Amiiir"
+    }
+  ],
+  "time": {
+    "elapsedHours": 0
+  },
+  "season": {
+    "today": "SUNNY"
+  },
+  "mainPlayer": {
+    "username": "AmirMoh",
+    "password": "624d2148ec237df92ea2ab2d0588c0df15113873f867c15bf98b317833de3811",
+    "email": "amirsana8587@gmail.com",
+    "gender": "MALE",
+    "question": "Q3",
+    "answer": "GPT",
+    "stayLoggedIn": true,
+    "highEarnedPoints": 0,
+    "gamesPlayed": 2,
+    "isInGame": false,
+    "currentGameId": 3,
+    "currentEnergy": -400,
+    "maxEnergy": 200,
+    "fainted": false,
+    "cellX": 0,
+    "cellY": 0,
+    "farming": {
+      "ability": "FARMING",
+      "level": 0,
+      "xp": 0,
+      "isMax": false
+    },
+    "mining": {
+      "ability": "MINING",
+      "level": 0,
+      "xp": 0,
+      "isMax": false
+    },
+    "foraging": {
+      "ability": "FORAGING",
+      "level": 0,
+      "xp": 0,
+      "isMax": false
+    },
+    "fishing": {
+      "ability": "FISHING",
+      "level": 0,
+      "xp": 0,
+      "isMax": false
+    },
+    "nickname": "Amiiir"
+  },
+  "turn": 0,
+  "points": {
+    "@": 0,
+    "@": 0
+  }
+}

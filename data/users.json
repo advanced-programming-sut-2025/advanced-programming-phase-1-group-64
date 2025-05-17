@@ -1,2 +1,102 @@
 {
+  "AmirMoh": {
+    "username": "AmirMoh",
+    "password": "624d2148ec237df92ea2ab2d0588c0df15113873f867c15bf98b317833de3811",
+    "email": "amirsana8587@gmail.com",
+    "gender": "MALE",
+    "question": "Q3",
+    "answer": "GPT",
+    "stayLoggedIn": true,
+    "highEarnedPoints": 0,
+    "gamesPlayed": 6,
+    "isInGame": true,
+    "currentGameId": 7,
+    "currentEnergy": 196,
+    "maxEnergy": 200,
+    "fainted": false,
+    "cellX": 0,
+    "cellY": 3,
+    "farming": {
+      "ability": "FARMING",
+      "level": 0,
+      "xp": 0,
+      "isMax": false
+    },
+    "mining": {
+      "ability": "MINING",
+      "level": 0,
+      "xp": 0,
+      "isMax": false
+    },
+    "foraging": {
+      "ability": "FORAGING",
+      "level": 0,
+      "xp": 0,
+      "isMax": false
+    },
+    "fishing": {
+      "ability": "FISHING",
+      "level": 0,
+      "xp": 0,
+      "isMax": false
+    },
+    "greenhouse": {
+      "built": false
+    },
+    "knownCraftingRecipes": [
+      "Scarecrow",
+      "Furnace"
+    ],
+    "nickname": "Amiiir"
+  },
+  "AmirKing": {
+    "username": "AmirKing",
+    "password": "624d2148ec237df92ea2ab2d0588c0df15113873f867c15bf98b317833de3811",
+    "email": "amirsana8587@gmail.com",
+    "gender": "MALE",
+    "question": "Q3",
+    "answer": "GPT",
+    "stayLoggedIn": false,
+    "highEarnedPoints": 0,
+    "gamesPlayed": 3,
+    "isInGame": true,
+    "currentGameId": 7,
+    "currentEnergy": 200,
+    "maxEnergy": 200,
+    "fainted": false,
+    "cellX": 220,
+    "cellY": 0,
+    "farming": {
+      "ability": "FARMING",
+      "level": 0,
+      "xp": 0,
+      "isMax": false
+    },
+    "mining": {
+      "ability": "MINING",
+      "level": 0,
+      "xp": 0,
+      "isMax": false
+    },
+    "foraging": {
+      "ability": "FORAGING",
+      "level": 0,
+      "xp": 0,
+      "isMax": false
+    },
+    "fishing": {
+      "ability": "FISHING",
+      "level": 0,
+      "xp": 0,
+      "isMax": false
+    },
+    "greenhouse": {
+      "built": false
+    },
+    "knownCraftingRecipes": [
+      "Scarecrow",
+      "Furnace"
+    ],
+    "nickname": "Amiiir"
+  }
 }

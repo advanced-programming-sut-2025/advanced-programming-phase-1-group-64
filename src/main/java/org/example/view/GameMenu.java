@@ -16,6 +16,7 @@ public class GameMenu implements AppMenu{
         Matcher matcher = null;
         if((matcher= GameMenuCommands.PLAY.getMatcher(input))!=null){
             List<String> usernames = new ArrayList<>();
+            usernames.add(App.getCurrentPlayer().getUsername());
             for (String g : List.of("u1", "u2", "u3")) {
                 String val = matcher.group(g);
                 if (val != null) usernames.add(val);

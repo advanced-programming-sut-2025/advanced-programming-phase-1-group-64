@@ -1,15 +1,18 @@
 package org.example.model.characters;
 
 import org.example.controller.EventBus;
-import org.example.model.Result;
 import org.example.model.characters.ability.Ability;
 import org.example.model.characters.inventory.Inventory;
 import org.example.model.context.Game;
+import org.example.model.items.Item;
+import org.example.model.items.extra.CopyItem;
 import org.example.model.world.Cell;
 import org.example.model.world.buildings.Greenhouse;
+import org.example.model.world.buildings.Home;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.Set;
 
 public class Player extends Character{
     private String username;
@@ -125,6 +128,7 @@ public class Player extends Character{
 
     public void addGame(){
         this.gamesPlayed++;
+        EventBus.post(new PlayerChanged(this));
     }
 
     private boolean isInGame;
@@ -146,15 +150,43 @@ public class Player extends Character{
         EventBus.post(new PlayerChanged(this));
     }
 
+    private int turnEnergy;
+    private int maxTurnEnergy = 50;
     private int currentEnergy;
     private int maxEnergy = 200;
     private boolean fainted;
 
-    private Cell cell;
+    public int getTurnEnergy() {
+        return turnEnergy;
+    }
+    public void setTurnEnergy(int turnEnergy) {
+        this.turnEnergy = turnEnergy;
+    }
+    public int getMaxTurnEnergy() {
+        return maxTurnEnergy;
+    }
+    public void setMaxTurnEnergy(int maxTurnEnergy) {
+        this.maxTurnEnergy = maxTurnEnergy;
+    }
+
+    private transient Cell cell;
+    private int cellX;
+    private int cellY;
+
+    public Cell getCell() {
+        return cell;
+    }
+    public void setCell(Cell cell) {
+        this.cell = cell;
+        this.cellX = cell.getX();
+        this.cellY = cell.getY();
+    }
 
     private Ability farming,mining,foraging, fishing;
-    private Inventory inventory;
+    private transient Inventory inventory;
     private Greenhouse greenhouse;
+    private transient Home home;
+    private Set<String> knownCraftingRecipes;
 
     public Ability farming() {
         return farming;
@@ -170,27 +202,50 @@ public class Player extends Character{
     }
     public void setFarming(Ability farming) {
         this.farming = farming;
+        EventBus.post(new PlayerChanged(this));
     }
     public void setMining(Ability mining) {
         this.mining = mining;
+        EventBus.post(new PlayerChanged(this));
     }
     public void setForaging(Ability foraging) {
         this.foraging = foraging;
+        EventBus.post(new PlayerChanged(this));
     }
     public void setFishing(Ability fishing) {
         this.fishing = fishing;
+        EventBus.post(new PlayerChanged(this));
     }
 
     public Inventory inventory() {
         return inventory;
     }
-    public void setInventory(Inventory inventory) {this.inventory = inventory;}
+    public void setInventory(Inventory inventory) {
+        this.inventory = inventory;
+        EventBus.post(new PlayerChanged(this));
+    }
 
     public Greenhouse getGreenhouse() {
         return greenhouse;
     }
     public void setGreenhouse(Greenhouse greenhouse) {
         this.greenhouse = greenhouse;
+        EventBus.post(new PlayerChanged(this));
+    }
+    public Home getHome() {
+        return home;
+    }
+    public void setHome(Home home) {
+        this.home = home;
+        EventBus.post(new PlayerChanged(this));
+    }
+
+    public Set<String> getKnownCraftingRecipes() {
+        return knownCraftingRecipes;
+    }
+    public void setKnownCraftingRecipes(Set<String> knownCraftingRecipes) {
+        this.knownCraftingRecipes = knownCraftingRecipes;
+        EventBus.post(new PlayerChanged(this));
     }
 
     public int getMaxEnergy() {
@@ -204,8 +259,14 @@ public class Player extends Character{
     public int getCurrentEnergy() {
         return currentEnergy;
     }
+    public void costCurrentEnergy(int currentEnergy) {
+        this.currentEnergy -= currentEnergy;
+        this.fainted = (this.currentEnergy == 0);
+        EventBus.post(new PlayerChanged(this));
+    }
     public void setCurrentEnergy(int currentEnergy) {
         this.currentEnergy = currentEnergy;
+        this.fainted = (this.currentEnergy == 0);
         EventBus.post(new PlayerChanged(this));
     }
 
@@ -220,6 +281,26 @@ public class Player extends Character{
     public void setStayLoggedIn(boolean stayLoggedIn) {
         this.stayLoggedIn = stayLoggedIn;
         EventBus.post(new PlayerChanged(this));
+    }
+
+    public void unlockRecipe(String itemName) {
+        if (knownCraftingRecipes.add(itemName)) {
+            EventBus.post(new PlayerChanged(this));
+        }
+    }
+
+    public boolean buildGreen(Game g){
+        CopyItem wood = new CopyItem("Wood", 0);
+        if(inventory.getItems().get(wood) >= Greenhouse.WOOD_COST){
+            if(g.getPoints().get(this) >= Greenhouse.COIN_COST){
+                inventory.deleteItem("Wood", Greenhouse.WOOD_COST, g, this);
+                int coins = g.getPoints().get(this);
+                g.getPoints().put(this, coins - Greenhouse.COIN_COST);
+                greenhouse.build();
+                return true;
+            }
+        }
+        return false;
     }
 
     @Override

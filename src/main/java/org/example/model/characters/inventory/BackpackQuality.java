@@ -18,4 +18,8 @@ public enum BackpackQuality {
             case DELUXE -> null;
         };
     }
+
+    public int getSize() {
+        return size;
+    }
 }

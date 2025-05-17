@@ -28,4 +28,36 @@ public class Tool extends Item {
     }
 
     public int getEnergyCost(){ return toolQuality!=null ? spec.getEnergyCost(toolQuality) : spec.getEnergyCost(fishingQuality);}
+
+    public ToolSpec getSpec() {
+        return spec;
+    }
+
+    public ToolAction getAction() {
+        return action;
+    }
+
+    public ToolQuality getToolQuality() {
+        return toolQuality;
+    }
+
+    public void setToolQuality(ToolQuality toolQuality) {
+        this.toolQuality = toolQuality;
+    }
+
+    public FishingQuality getFishingQuality() {
+        return fishingQuality;
+    }
+
+    public void setFishingQuality(FishingQuality fishingQuality) {
+        this.fishingQuality = fishingQuality;
+    }
+
+    public int getWaterInPail() {
+        return waterInPail;
+    }
+
+    public void setWaterInPail(int waterInPail) {
+        this.waterInPail = waterInPail;
+    }
 }

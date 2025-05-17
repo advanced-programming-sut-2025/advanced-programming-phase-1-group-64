@@ -8,4 +8,12 @@ public abstract class Item {
         this.name = name;
         this.basePrice = basePrice;
     }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getBasePrice() {
+        return basePrice;
+    }
 }

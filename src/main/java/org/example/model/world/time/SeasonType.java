@@ -3,10 +3,16 @@ package org.example.model.world.time;
 import java.util.EnumSet;
 
 public enum SeasonType {
-    SPRING,
-    SUMMER,
-    FALL,
-    WINTER;
+    SPRING("Spring"),
+    SUMMER("Summer"),
+    FALL("Fall"),
+    WINTER("Winter");
+
+    private final String name;
+
+    SeasonType(String name) {
+        this.name = name;
+    }
 
     public static EnumSet<SeasonType> parseList(String cell){
         EnumSet<SeasonType> set = EnumSet.noneOf(SeasonType.class);
@@ -15,4 +21,6 @@ public enum SeasonType {
         }
         return set;
     }
+
+    public String getName() { return this.name; }
 }

@@ -24,4 +24,8 @@ public enum TrashQuality {
             case IRIDIUM -> null;
         };
     }
+
+    public double getReturningSalesValue() {
+        return returningSalesValue;
+    }
 }

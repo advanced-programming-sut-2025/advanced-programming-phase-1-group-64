@@ -8,8 +8,9 @@ public class Cell {
     private int x;
     private int y;
     private CellKind kind;
-    private ArrayList<Player> haveAccessToThisCellPlayers;
+    private transient ArrayList<Player> haveAccessToThisCellPlayers;
     private Object object;
+    private transient Object occupant;
 
     public Cell(int x, ArrayList<Player> haveAccessToThisCellPlayers, CellKind kind, int y) {
         this.x = x;
@@ -55,8 +56,12 @@ public class Cell {
         return haveAccessToThisCellPlayers;
     }
 
-    public void setHaveAccessToThisCellPlayers(ArrayList<Player> haveAccessToThisCellPlayers) {
-        this.haveAccessToThisCellPlayers = haveAccessToThisCellPlayers;
+    public Object getOccupant() {
+        return occupant;
+    }
+
+    public void setOccupant(Object occupant) {
+        this.occupant = occupant;
     }
 
     public boolean equals(Object object){

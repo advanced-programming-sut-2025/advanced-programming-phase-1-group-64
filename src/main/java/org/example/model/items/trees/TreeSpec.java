@@ -32,4 +32,9 @@ public final class TreeSpec {
         this.energy = energy;
         this.seasons = seasons;
     }
+
+    @Override
+    public String toString() {
+        return "T";
+    }
 }

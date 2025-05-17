@@ -8,6 +8,7 @@ public class App {
     private static Menu currentMenu = Menu.REGISTER_MENU;
     private static Player currentPlayer = null;
     private static int gamesWasCreated = 0;
+    private static Game currentGame = null;
 
     static {
         StatRepo.load();
@@ -25,5 +26,11 @@ public class App {
     }
     public static void setCurrentPlayer(Player currentPlayer) {
         App.currentPlayer = currentPlayer;
+    }
+    public static Game getCurrentGame() {
+        return currentGame;
+    }
+    public static void setCurrentGame(Game currentGame) {
+        App.currentGame = currentGame;
     }
 }
