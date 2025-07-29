@@ -118,6 +118,7 @@ public class SignUpScreen implements Screen {
         table.row().padTop(20);
 
         statusLabel = new Label("", skin);
+        statusLabel.setAlignment(Align.center);
         table.add(statusLabel).colspan(2).growX();
         table.row().padTop(10);
 
@@ -169,14 +170,64 @@ public class SignUpScreen implements Screen {
     }
 
     private void sendSignupRequest() {
-        String username = usernameField.getText();
-        String nickname = nicknameField.getText();
-        String email = emailField.getText();
+        String username = usernameField.getText().trim();
+        String nickname = nicknameField.getText().trim();
+        String email = emailField.getText().trim();
         String password = passwordField.getText();
         String confirmPassword = confirmPasswordField.getText();
         String gender = genderSelectBox.getSelected();
         String securityQuestion = securityQuestionSelectBox.getSelected();
-        String securityAnswer = securityAnswerField.getText();
+        String securityAnswer = securityAnswerField.getText().trim();
+
+        if (username.isEmpty() || nickname.isEmpty() || email.isEmpty() || password.isEmpty() || securityAnswer.isEmpty()) {
+            statusLabel.setText("All fields are required!");
+            statusLabel.setColor(Color.RED);
+            return;
+        }
+
+        if (!username.matches("^[a-zA-Z0-9-]+$")) {
+            statusLabel.setText("Username can only contain letters, numbers, and hyphens.");
+            statusLabel.setColor(Color.RED);
+            return;
+        }
+
+        String emailRegex = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$";
+        String symbols = "?<>,'\";:\\/|\\[\\](){}+=!#$%.^&*";
+        if (!email.matches(emailRegex)) {
+            statusLabel.setText("Invalid email format.");
+            statusLabel.setColor(Color.RED);
+            return;
+        }
+
+        if (password.length() < 8) {
+            statusLabel.setText("Password must be at least 8 characters long.");
+            statusLabel.setColor(Color.RED);
+            return;
+        }
+
+        if (!password.matches(".*[a-z].*")) {
+            statusLabel.setText("Password must contain at least one lowercase letter.");
+            statusLabel.setColor(Color.RED);
+            return;
+        }
+
+        if (!password.matches(".*[A-Z].*")) {
+            statusLabel.setText("Password must contain at least one uppercase letter.");
+            statusLabel.setColor(Color.RED);
+            return;
+        }
+
+        if (!password.matches(".*\\d.*")) {
+            statusLabel.setText("Password must contain at least one number.");
+            statusLabel.setColor(Color.RED);
+            return;
+        }
+
+        if (!password.matches(".*[" + symbols.replace("\\", "\\\\").replace("[", "\\[").replace("]", "\\]") + "].*")) {
+            statusLabel.setText("Password must contain at least one special symbol.");
+            statusLabel.setColor(Color.RED);
+            return;
+        }
 
         if (!Objects.equals(password, confirmPassword)) {
             statusLabel.setText("Passwords do not match!");
@@ -188,13 +239,13 @@ public class SignUpScreen implements Screen {
         statusLabel.setColor(Color.YELLOW);
 
         Map<String, String> data = new HashMap<>();
-        data.put("username", usernameField.getText());
-        data.put("nickname", nicknameField.getText());
+        data.put("username", username);
+        data.put("nickname", nickname);
         data.put("password", password);
-        data.put("email", emailField.getText());
-        data.put("gender", genderSelectBox.getSelected());
-        data.put("securityQuestion", securityQuestionSelectBox.getSelected());
-        data.put("securityAnswer", securityAnswerField.getText());
+        data.put("email", email);
+        data.put("gender", gender);
+        data.put("securityQuestion", securityQuestion);
+        data.put("securityAnswer", securityAnswer);
 
         Net.HttpRequest request = new Net.HttpRequest(Net.HttpMethods.POST);
         request.setUrl("http://localhost:8080/signup");
