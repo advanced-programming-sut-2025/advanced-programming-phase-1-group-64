@@ -12,6 +12,7 @@ public class ServerLauncher {
         HttpServer server = HttpServer.create(new InetSocketAddress(PORT), 0);
 
         server.createContext("/signup", new SignupHandler());
+        server.createContext("/users", new UsersHandler());
 
         server.setExecutor(Executors.newFixedThreadPool(10));
 

@@ -16,7 +16,10 @@ import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.ScreenUtils;
+import com.badlogic.gdx.utils.Timer;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
+import com.google.gson.Gson;
+
 import java.security.SecureRandom;
 import java.util.HashMap;
 import java.util.Map;
@@ -248,7 +251,7 @@ public class SignUpScreen implements Screen {
         data.put("securityAnswer", securityAnswer);
 
         Net.HttpRequest request = new Net.HttpRequest(Net.HttpMethods.POST);
-        request.setUrl("http://localhost:8080/signup");
+        request.setUrl("http://192.168.100.2:8080/signup");
         request.setHeader("Content-Type", "application/json");
         request.setContent(new com.google.gson.Gson().toJson(data));
 
@@ -263,8 +266,26 @@ public class SignUpScreen implements Screen {
                         statusLabel.setText("Account created successfully!");
                         statusLabel.setColor(Color.GREEN);
                         Gdx.app.log("SIGNUP", "Success: " + responseBody);
+
+                        Timer.schedule(new Timer.Task() {
+                            @Override
+                            public void run() {
+                                game.setScreen(new LoginScreen(game, skin));
+                            }
+                        }, 1);
+
                     } else {
-                        statusLabel.setText("Error! Could not create account.");
+                        String errorMessage = "Error! Could not create account.";
+                        try {
+                            Map<String, String> errorMap = new Gson().fromJson(responseBody, Map.class);
+                            if (errorMap != null && errorMap.containsKey("error")) {
+                                errorMessage = errorMap.get("error");
+                            }
+                        } catch (Exception e) {
+                            Gdx.app.error("SIGNUP_JSON_PARSE", "Could not parse error response.", e);
+                        }
+
+                        statusLabel.setText(errorMessage);
                         statusLabel.setColor(Color.RED);
                         Gdx.app.error("SIGNUP", "Failed (" + statusCode + "): " + responseBody);
                     }
