@@ -251,7 +251,7 @@ public class SignUpScreen implements Screen {
         data.put("securityAnswer", securityAnswer);
 
         Net.HttpRequest request = new Net.HttpRequest(Net.HttpMethods.POST);
-        request.setUrl("http://192.168.100.2:8080/signup");
+        request.setUrl("http://localhost:8080/signup");
         request.setHeader("Content-Type", "application/json");
         request.setContent(new com.google.gson.Gson().toJson(data));
 
